@@ -1,0 +1,18 @@
+{
+	"index.html": {
+		"resources": [
+			"images/0.jpg",
+			"images/2.jpg",
+			"fonts/iconfont.css",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"images/1.jpg",
+			"css/mui.min.css",
+			"images/3.jpg",
+			"fonts/iconfont.woff",
+			"css/index.css",
+			"images/menu-bk.jpg",
+			"images/head-0.jpg"
+		]
+	}
+}

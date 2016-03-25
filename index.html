@@ -9,135 +9,126 @@
 		<script src="js/mui.min.js"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="fonts/iconfont.css" />
+		<link rel="stylesheet" href="css/index.css" />
 		<style type="text/css">
-			.iconfont {
-				-webkit-font-smoothing: antialiased;
+			.mui-scroll-wrapper{
+			    background: #FFFDEF;
 			}
-			
-			.mui-bar-nav {
-				background-color: #FE3333;
-			}
-			
-			.mui-bar-nav .mui-icon {
+			.user-info{
+				height: 140px;
 				color: #FFFDEF;
-				font-weight: bold;
+				padding: 45px 10px 0px;
+				background: url(images/menu-bk.jpg) center no-repeat;
+				background-size: 100%;
 			}
-			
-			.mui-bar-nav .mui-title .mui-icon {
-				padding: 6px 12px;
-				font-size: 26px;
-				font-weight: normal;
+			.user-info .user-info-txt{
+				height: 35px;
+    			line-height: 35px;
+    			font-size: 14px;
 			}
-			
-			.mui-bar-nav .mui-title .mui-active {
+			.user-info .user-head{
+				background: url(images/head-0.jpg) center no-repeat;
+				height: 50px;
+				width: 50px;
+				border-radius: 50%;
+			}
+			.user-info .user-level{
+				border: 1px solid;
+				padding: 0px 3px;
+				font-size: 10px;
+				border-radius: 7px;
+				margin-left: 2px;
+			}
+			.user-info .mui-btn{
 				color: #FFFDEF;
+				line-height: 10px;
+    			margin: 5px 0px;
+    			font-size: 12px;
 			}
-			
-			.mui-segmented-control {
-				top: 44px;
-				border: none;
-				font-size: 13px;
-				position: fixed;
-				z-index: 2;
-				background-color: #FFFDEF;
+			.mui-table-view{
+				font-size: 12px;
+				color: #555555;
 			}
-			
-			.mui-segmented-control .mui-control-item {
-				line-height: 35px;
-				border: none;
-				color: #666;
-			}
-			
-			.mui-segmented-control .mui-control-item.mui-active {
-				color: #fe3333;
+			.mui-table-view-cell:after{
 				background: none;
-				border-bottom: solid 2px #FE3333;
-			}
-			
-			.mui-bar-nav~.mui-content {
-				padding-top: 81px;
-				padding-bottom: 50px;
-			}
-			
-			.mui-slider-group {
-				height: 120px;
-			}
-			
-			.memu {
-				width: 100%;
-				padding: 0px 2%;
-				border-bottom: 1px solid #CCCCCC;
-			}
-			
-			.memu .menu-list {
-				width: 32%;
-				text-align: center;
-				display: inline-block;
-			}
-			
-			.memu .menu-list .iconfont {
-				font-size: 50px;
-				padding: 20px 0px 10px;
-				color: #FE3333;
-				font-weight: lighter;
-			}
-			
-			.memu .menu-list .menu-list-tips {
-				font-size: 12px;
-				color: #333;
-			}
-			
-			.music-recommend {
-				padding: 10px 10px 0px;
-				color: #333333;
-			}
-			
-			.music-recommend .iconfont {
-				color: #FE3333;
-				font-size: 25px;
-			}
-			
-			.music-recommend .title {
-				font-weight: bold;
-			}
-			
-			.music-recommend .more {
-				color: #666666;
-				font-size: 12px;
-				line-height: 35px;
-			}
-			
-			.music-list {
-				list-style: none;
-				margin: 0;
-				padding: 0px;
-				width: 100%;
-				overflow: hidden;
-				zoom: 1;
-			}
-			
-			.music-list li {
-				float: left;
-				width: 31%;
-				overflow: hidden;
-				margin-left: 2%;
-			}
-			
-			.music-list img {
-				width: 100%;
-			}
-			
-			.music-list p {
-				font-size: 12px;
-				color: #666;
-				overflow: hidden;
-				text-overflow: ellipsis;
 			}
 		</style>
 	</head>
 
 	<body>
-		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable" data-offcanvas="3">
+		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable mui-slide-in">
+			<!--作者：w20999hf@qq.com 时间：2016-03-25  描述：侧滑菜单开始-->
+			<aside id="offCanvasSide" class="mui-off-canvas-left">
+				<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div class="content">
+							<div class="user-info">
+								<div class="user-head"></div>
+								<div class="user-info-txt">
+									<span>LK丶猪在飞</span>
+									<span class="user-level"><i>Lv.3</i></span>
+									<button class="mui-btn mui-btn-outlined mui-pull-right">签 到</button>
+								</div>
+							</div>
+						</div>
+						<ul class="mui-table-view mui-table-view-chevron">
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									我的消息
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									积分商城
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									付费音乐包
+								</a>
+							</li>
+								<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									在线听歌免流量
+								</a>
+							</li>
+						</ul>
+						<ul class="mui-table-view mui-table-view-chevron">
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									听歌识曲
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									主题换肤
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									夜间模式
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									音乐闹钟
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									定时停止播放
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								
+							</li>
+						</ul>
+					</div>
+				</div>
+			</aside>
+			<!--描述：侧滑菜单结束-->
+
+			<!--作者：w20999hf@qq.com 时间：2016-03-25  描述：页面主内容开始-->
 			<div class="mui-inner-wrap">
 				<header class="mui-bar mui-bar-nav">
 					<a href="#offCanvasSide" class="mui-icon mui-icon-bars"></a>
@@ -154,151 +145,157 @@
 					<a class="mui-control-item" href="#item1">主播电台</a>
 					<a class="mui-control-item" href="#item2">排行榜</a>
 				</div>
-				<div class="mui-content">
-					<div id="slider" class="mui-slider">
-						<div class="mui-slider-group mui-slider-loop">
-							<div class="mui-slider-item mui-slider-item-duplicate">
-								<a href="article.html" class="article">
-									<img src="images/2.jpg">
-								</a>
+				<div class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div id="slider" class="mui-slider">
+							<div class="mui-slider-group mui-slider-loop">
+								<div class="mui-slider-item mui-slider-item-duplicate">
+									<a href="article.html" class="article">
+										<img src="images/3.jpg">
+									</a>
+								</div>
+								<!--第一个内容区容器-->
+								<div class="mui-slider-item">
+									<a href="article.html" class="article">
+										<img src="images/0.jpg">
+									</a>
+								</div>
+								<!--第二个内容区-->
+								<div class="mui-slider-item">
+									<a href="article.html" class="article">
+										<img src="images/1.jpg">
+									</a>
+								</div>
+								<div class="mui-slider-item">
+									<a href="article.html" class="article">
+										<img src="images/2.jpg">
+									</a>
+								</div>
+								<div class="mui-slider-item">
+									<a href="article.html" class="article">
+										<img src="images/3.jpg">
+									</a>
+								</div>
+								<div class="mui-slider-item mui-slider-item-duplicate">
+									<a href="article.html" class="article">
+										<img src="images/0.jpg">
+									</a>
+								</div>
 							</div>
-							<!--第一个内容区容器-->
-							<div class="mui-slider-item">
-								<a href="article.html" class="article">
-									<img src="images/0.jpg">
-								</a>
-							</div>
-							<!--第二个内容区-->
-							<div class="mui-slider-item">
-								<a href="article.html" class="article">
-									<img src="images/1.jpg">
-								</a>
-							</div>
-							<div class="mui-slider-item">
-								<a href="article.html" class="article">
-									<img src="images/2.jpg">
-								</a>
-							</div>
-							<div class="mui-slider-item mui-slider-item-duplicate">
-								<a href="article.html" class="article">
-									<img src="images/0.jpg">
-								</a>
+							<div class="mui-slider-indicator mui-text-center">
+								<div class="mui-indicator mui-active"></div>
+								<div class="mui-indicator"></div>
+								<div class="mui-indicator"></div>
+								<div class="mui-indicator"></div>
 							</div>
 						</div>
-						<div class="mui-slider-indicator mui-text-center">
-							<div class="mui-indicator mui-active"></div>
-							<div class="mui-indicator"></div>
-							<div class="mui-indicator"></div>
+						<div class="memu">
+							<a class="menu-list">
+								<i class="mui-icon iconfont">&#xe607;</i>
+								<p class="menu-list-tips">私人FM</p>
+							</a>
+							<a class="menu-list">
+								<i class="mui-icon iconfont">&#xe608;</i>
+								<p class="menu-list-tips">每日歌曲推荐</p>
+							</a>
+							<a class="menu-list">
+								<i class="mui-icon iconfont">&#xe603;</i>
+								<p class="menu-list-tips">云音乐新歌榜</p>
+							</a>
 						</div>
-					</div>
-
-					<div class="memu">
-						<a class="menu-list">
-							<i class="mui-icon iconfont">&#xe607;</i>
-							<p class="menu-list-tips">私人FM</p>
-						</a>
-						<a class="menu-list">
-							<i class="mui-icon iconfont">&#xe608;</i>
-							<p class="menu-list-tips">每日歌曲推荐</p>
-						</a>
-						<a class="menu-list">
-							<i class="mui-icon iconfont">&#xe603;</i>
-							<p class="menu-list-tips">云音乐新歌榜</p>
-						</a>
-					</div>
-
-					<div class="music-recommend">
-						<header>
-							<i class="mui-icon iconfont">&#xe605;</i>
-							<span class="title">推荐歌单</span>
-							<a class="mui-pull-right more">更多 ></a>
-						</header>
-						<div class="music-content">
-							<ul class="music-list">
-								<li>
-									<a href="#" class="music-list-order">
-										<img src="images/2.jpg" />
-									</a>
-									<p>历史的画卷，王朝旧梦</p>
-								</li>
-								<li>
-									<a href="#" class="music-list-order">
-										<img src="images/2.jpg" />
-									</a>
-									<p>历史的画卷，王朝旧梦</p>
-								</li>
-								<li>
-									<a href="#" class="music-list-order">
-										<img src="images/2.jpg" />
-									</a>
-									<p>能把声音传递给天堂的歌者...</p>
-								</li>
-								<li>
-									<a href="#" class="music-list-order">
-										<img src="images/0.jpg" />
-									</a>
-									<p>能把声音传递给天堂的歌者...</p>
-								</li>
-								<li>
-									<a href="#" class="music-list-order">
-										<img src="images/3.jpg" />
-									</a>
-									<p>能把声音传递给天堂的歌者...</p>
-								</li>
-								<li>
-									<a href="#" class="music-list-order">
-										<img src="images/0.jpg" />
-									</a>
-									<p>浮生若梦，享一杯清茶...</p>
-								</li>
-							</ul>
+						<div class="music-recommend">
+							<header>
+								<i class="mui-icon iconfont">&#xe605;</i>
+								<span class="title">推荐歌单</span>
+								<a class="mui-pull-right more">更多 ></a>
+							</header>
+							<div class="music-content">
+								<ul class="music-list">
+									<li>
+										<a href="#" class="music-list-order">
+											<img src="images/2.jpg" />
+										</a>
+										<p>历史的画卷，王朝旧梦</p>
+									</li>
+									<li>
+										<a href="#" class="music-list-order">
+											<img src="images/2.jpg" />
+										</a>
+										<p>历史的画卷，王朝旧梦</p>
+									</li>
+									<li>
+										<a href="#" class="music-list-order">
+											<img src="images/2.jpg" />
+										</a>
+										<p>能把声音传递给天堂的歌者...</p>
+									</li>
+									<li>
+										<a href="#" class="music-list-order">
+											<img src="images/0.jpg" />
+										</a>
+										<p>能把声音传递给天堂的歌者...</p>
+									</li>
+									<li>
+										<a href="#" class="music-list-order">
+											<img src="images/3.jpg" />
+										</a>
+										<p>能把声音传递给天堂的歌者...</p>
+									</li>
+									<li>
+										<a href="#" class="music-list-order">
+											<img src="images/0.jpg" />
+										</a>
+										<p>浮生若梦，享一杯清茶...</p>
+									</li>
+								</ul>
+							</div>
 						</div>
-					</div>
-					<div class="music-recommend">
-						<header>
-							<i class="mui-icon iconfont">&#xe608;</i>
-							<span class="title">最新音乐</span>
-							<a class="mui-pull-right more">更多 ></a>
-						</header>
-						<div class="music-content">
-							<ul class="music-list">
-								<li>
-									<a href="#" class="music-list-order">
-										<img src="images/2.jpg" />
-									</a>
-									<p>历史的画卷，王朝旧梦</p>
-								</li>
-								<li>
-									<a href="#" class="music-list-order">
-										<img src="images/2.jpg" />
-									</a>
-									<p>历史的画卷，王朝旧梦</p>
-								</li>
-								<li>
-									<a href="#" class="music-list-order">
-										<img src="images/2.jpg" />
-									</a>
-									<p>能把声音传递给天堂的歌者...</p>
-								</li>
-								<li>
-									<a href="#" class="music-list-order">
-										<img src="images/0.jpg" />
-									</a>
-									<p>能把声音传递给天堂的歌者...</p>
-								</li>
-								<li>
-									<a href="#" class="music-list-order">
-										<img src="images/3.jpg" />
-									</a>
-									<p>能把声音传递给天堂的歌者...</p>
-								</li>
-								<li>
-									<a href="#" class="music-list-order">
-										<img src="images/0.jpg" />
-									</a>
-									<p>浮生若梦，享一杯清茶...</p>
-								</li>
-							</ul>
+						<div class="music-recommend">
+							<header>
+								<i class="mui-icon iconfont">&#xe608;</i>
+								<span class="title">最新音乐</span>
+								<a class="mui-pull-right more">更多 ></a>
+							</header>
+							<div class="music-content">
+								<ul class="music-list">
+									<li>
+										<a href="#" class="music-list-order">
+											<img src="images/2.jpg" />
+										</a>
+										<p>历史的画卷，王朝旧梦</p>
+									</li>
+									<li>
+										<a href="#" class="music-list-order">
+											<img src="images/2.jpg" />
+										</a>
+										<p>历史的画卷，王朝旧梦</p>
+									</li>
+									<li>
+										<a href="#" class="music-list-order">
+											<img src="images/2.jpg" />
+										</a>
+										<p>能把声音传递给天堂的歌者...</p>
+									</li>
+									<li>
+										<a href="#" class="music-list-order">
+											<img src="images/0.jpg" />
+										</a>
+										<p>能把声音传递给天堂的歌者...</p>
+									</li>
+									<li>
+										<a href="#" class="music-list-order">
+											<img src="images/3.jpg" />
+										</a>
+										<p>能把声音传递给天堂的歌者...</p>
+									</li>
+									<li>
+										<a href="#" class="music-list-order">
+											<img src="images/0.jpg" />
+										</a>
+										<p>浮生若梦，享一杯清茶...</p>
+									</li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -322,61 +319,9 @@
 						</a>
 					</nav>
 				</footer>
+				<div class="mui-off-canvas-backdrop"></div>
 			</div>
-			<!--作者：w20999hf@qq.com 时间：2016-03-25  描述：侧滑菜单开始-->
-			<aside id="offCanvasSide" class="mui-off-canvas-left">
-				<div id="offCanvasSideScroll" class="mui-scroll-wrapper" data-scroll="1">
-					<div class="mui-scroll" style="transform: translate3d(0px, 0px, 0px) translateZ(0px);">
-						<div class="title">侧滑导航</div>
-						<div class="content">
-							这是可拖动式侧滑菜单示例，你可以在这里放置任何内容；关闭侧滑菜单有多种方式： 1.在手机屏幕任意位置向左拖动(drag)；2.点击本侧滑菜单页之外的任意位置; 3.点击如下红色按钮
-							<span class="android-only" style="display: none;">；4.Android手机按back键；5.Android手机按menu键
-							</span>。
-							<p style="margin: 10px 15px;">
-								<button id="offCanvasHide" type="button" class="mui-btn mui-btn-danger mui-btn-block" style="padding: 5px 20px;">关闭侧滑菜单</button>
-							</p>
-
-						</div>
-						<div class="title" style="margin-bottom: 25px;">侧滑列表示例</div>
-						<ul class="mui-table-view mui-table-view-chevron mui-table-view-inverted">
-							<li class="mui-table-view-cell">
-								<a class="mui-navigate-right">
-									Item 1
-								</a>
-							</li>
-							<li class="mui-table-view-cell">
-								<a class="mui-navigate-right">
-									Item 2
-								</a>
-							</li>
-							<li class="mui-table-view-cell">
-								<a class="mui-navigate-right">
-									Item 3
-								</a>
-							</li>
-							<li class="mui-table-view-cell">
-								<a class="mui-navigate-right">
-									Item 4
-								</a>
-							</li>
-							<li class="mui-table-view-cell">
-								<a class="mui-navigate-right">
-									Item 5
-								</a>
-							</li>
-							<li class="mui-table-view-cell">
-								<a class="mui-navigate-right">
-									Item 6
-								</a>
-							</li>
-						</ul>
-					</div>
-					<div class="mui-scrollbar mui-scrollbar-vertical">
-						<div class="mui-scrollbar-indicator" style="transition-duration: 0ms; display: block; height: 8px; transform: translate3d(0px, -8px, 0px) translateZ(0px);"></div>
-					</div>
-				</div>
-			</aside>
-			<!--描述：侧滑菜单结束-->
+			<!--页面主内容结束-->
 		</div>
 	</body>
 	<script type="text/javascript" charset="utf-8">
@@ -384,24 +329,9 @@
 		mui("#slider").slider({
 			interval: 3000
 		});
-		//侧滑容器父节点
-		var offCanvasWrapper = mui('#offCanvasWrapper');
-		//主界面容器
-		var offCanvasInner = offCanvasWrapper[0].querySelector('.mui-inner-wrap');
-
-		//侧滑容器的class列表，增加.mui-slide-in即可实现菜单移动、主界面不动的效果；
-		var classList = offCanvasWrapper[0].classList;
-		//变换侧滑动画移动效果；
-		offCanvasSide.classList.remove('mui-transitioning');
-		offCanvasSide.setAttribute('style', '');
-		classList.remove('mui-slide-in');
-		classList.remove('mui-scalable');
-		classList.add('mui-slide-in');
-		offCanvasWrapper.offCanvas().refresh();
-		//主界面和侧滑菜单界面均支持区域滚动；
-		mui('#offCanvasSideScroll').scroll();
-//		mui('#offCanvasContentScroll').scroll();
-		//实现ios平台原生侧滑关闭页面；
+		mui('.mui-scroll-wrapper').scroll({
+			deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+		});
 		if (mui.os.plus && mui.os.ios) {
 			mui.plusReady(function() { //5+ iOS暂时无法屏蔽popGesture时传递touch事件，故该demo直接屏蔽popGesture功能
 				plus.webview.currentWebview().setStyle({
