@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="fonts/iconfont.css" />
+		<style type="text/css">
+			.iconfont {
+				-webkit-font-smoothing: antialiased;
+			}
+			
+			.mui-bar-nav {
+				background-color: #FE3333;
+			}
+			
+			.mui-bar-nav .mui-icon {
+				color: #FFFDEF;
+				font-weight: bold;
+			}
+			
+			.mui-bar-nav .mui-title .mui-icon {
+				padding: 6px 12px;
+				font-size: 26px;
+				font-weight: normal;
+			}
+			
+			.mui-bar-nav .mui-title .mui-active {
+				color: #FFFDEF;
+			}
+			
+			.mui-segmented-control {
+				top: 44px;
+				border: none;
+				font-size: 13px;
+				position: fixed;
+				z-index: 2;
+				background-color: #FFFDEF;
+			}
+			
+			.mui-segmented-control .mui-control-item {
+				line-height: 35px;
+				border: none;
+				color: #666;
+			}
+			
+			.mui-segmented-control .mui-control-item.mui-active {
+				color: #fe3333;
+				background: none;
+				border-bottom: solid 2px #FE3333;
+			}
+			
+			.mui-bar-nav~.mui-content {
+				padding-top: 81px;
+				padding-bottom: 50px;
+			}
+			
+			.mui-slider-group {
+				height: 120px;
+			}
+			
+			.memu {
+				width: 100%;
+				padding: 0px 2%;
+				border-bottom: 1px solid #CCCCCC;
+			}
+			
+			.memu .menu-list {
+				width: 32%;
+				text-align: center;
+				display: inline-block;
+			}
+			
+			.memu .menu-list .iconfont {
+				font-size: 50px;
+				padding: 20px 0px 10px;
+				color: #FE3333;
+				font-weight: lighter;
+			}
+			
+			.memu .menu-list .menu-list-tips {
+				font-size: 12px;
+				color: #333;
+			}
+			
+			.music-recommend {
+				padding: 10px 10px 0px;
+				color: #333333;
+			}
+			
+			.music-recommend .iconfont {
+				color: #FE3333;
+				font-size: 25px;
+			}
+			
+			.music-recommend .title {
+				font-weight: bold;
+			}
+			
+			.music-recommend .more {
+				color: #666666;
+				font-size: 12px;
+				line-height: 35px;
+			}
+			
+			.music-list {
+				list-style: none;
+				margin: 0;
+				padding: 0px;
+				width: 100%;
+				overflow: hidden;
+				zoom: 1;
+			}
+			
+			.music-list li {
+				float: left;
+				width: 31%;
+				overflow: hidden;
+				margin-left: 2%;
+			}
+			
+			.music-list img {
+				width: 100%;
+			}
+			
+			.music-list p {
+				font-size: 12px;
+				color: #666;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable" data-offcanvas="3">
+			<div class="mui-inner-wrap">
+				<header class="mui-bar mui-bar-nav">
+					<a href="#offCanvasSide" class="mui-icon mui-icon-bars"></a>
+					<h1 class="mui-title">
+						<a class="mui-icon iconfont mui-active">&#xe600;</a>
+						<a class="mui-icon iconfont">&#xe604;</a>
+						<a class="mui-icon iconfont">&#xe606;</a>
+					</h1>
+					<a class="mui-icon mui-icon-search mui-pull-right"></a>
+				</header>
+				<div class="mui-segmented-control">
+					<a class="mui-control-item mui-active" href="#item1">个性推荐</a>
+					<a class="mui-control-item" href="#item2">歌单</a>
+					<a class="mui-control-item" href="#item1">主播电台</a>
+					<a class="mui-control-item" href="#item2">排行榜</a>
+				</div>
+				<div class="mui-content">
+					<div id="slider" class="mui-slider">
+						<div class="mui-slider-group mui-slider-loop">
+							<div class="mui-slider-item mui-slider-item-duplicate">
+								<a href="article.html" class="article">
+									<img src="images/2.jpg">
+								</a>
+							</div>
+							<!--第一个内容区容器-->
+							<div class="mui-slider-item">
+								<a href="article.html" class="article">
+									<img src="images/0.jpg">
+								</a>
+							</div>
+							<!--第二个内容区-->
+							<div class="mui-slider-item">
+								<a href="article.html" class="article">
+									<img src="images/1.jpg">
+								</a>
+							</div>
+							<div class="mui-slider-item">
+								<a href="article.html" class="article">
+									<img src="images/2.jpg">
+								</a>
+							</div>
+							<div class="mui-slider-item mui-slider-item-duplicate">
+								<a href="article.html" class="article">
+									<img src="images/0.jpg">
+								</a>
+							</div>
+						</div>
+						<div class="mui-slider-indicator mui-text-center">
+							<div class="mui-indicator mui-active"></div>
+							<div class="mui-indicator"></div>
+							<div class="mui-indicator"></div>
+						</div>
+					</div>
+
+					<div class="memu">
+						<a class="menu-list">
+							<i class="mui-icon iconfont">&#xe607;</i>
+							<p class="menu-list-tips">私人FM</p>
+						</a>
+						<a class="menu-list">
+							<i class="mui-icon iconfont">&#xe608;</i>
+							<p class="menu-list-tips">每日歌曲推荐</p>
+						</a>
+						<a class="menu-list">
+							<i class="mui-icon iconfont">&#xe603;</i>
+							<p class="menu-list-tips">云音乐新歌榜</p>
+						</a>
+					</div>
+
+					<div class="music-recommend">
+						<header>
+							<i class="mui-icon iconfont">&#xe605;</i>
+							<span class="title">推荐歌单</span>
+							<a class="mui-pull-right more">更多 ></a>
+						</header>
+						<div class="music-content">
+							<ul class="music-list">
+								<li>
+									<a href="#" class="music-list-order">
+										<img src="images/2.jpg" />
+									</a>
+									<p>历史的画卷，王朝旧梦</p>
+								</li>
+								<li>
+									<a href="#" class="music-list-order">
+										<img src="images/2.jpg" />
+									</a>
+									<p>历史的画卷，王朝旧梦</p>
+								</li>
+								<li>
+									<a href="#" class="music-list-order">
+										<img src="images/2.jpg" />
+									</a>
+									<p>能把声音传递给天堂的歌者...</p>
+								</li>
+								<li>
+									<a href="#" class="music-list-order">
+										<img src="images/0.jpg" />
+									</a>
+									<p>能把声音传递给天堂的歌者...</p>
+								</li>
+								<li>
+									<a href="#" class="music-list-order">
+										<img src="images/3.jpg" />
+									</a>
+									<p>能把声音传递给天堂的歌者...</p>
+								</li>
+								<li>
+									<a href="#" class="music-list-order">
+										<img src="images/0.jpg" />
+									</a>
+									<p>浮生若梦，享一杯清茶...</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="music-recommend">
+						<header>
+							<i class="mui-icon iconfont">&#xe608;</i>
+							<span class="title">最新音乐</span>
+							<a class="mui-pull-right more">更多 ></a>
+						</header>
+						<div class="music-content">
+							<ul class="music-list">
+								<li>
+									<a href="#" class="music-list-order">
+										<img src="images/2.jpg" />
+									</a>
+									<p>历史的画卷，王朝旧梦</p>
+								</li>
+								<li>
+									<a href="#" class="music-list-order">
+										<img src="images/2.jpg" />
+									</a>
+									<p>历史的画卷，王朝旧梦</p>
+								</li>
+								<li>
+									<a href="#" class="music-list-order">
+										<img src="images/2.jpg" />
+									</a>
+									<p>能把声音传递给天堂的歌者...</p>
+								</li>
+								<li>
+									<a href="#" class="music-list-order">
+										<img src="images/0.jpg" />
+									</a>
+									<p>能把声音传递给天堂的歌者...</p>
+								</li>
+								<li>
+									<a href="#" class="music-list-order">
+										<img src="images/3.jpg" />
+									</a>
+									<p>能把声音传递给天堂的歌者...</p>
+								</li>
+								<li>
+									<a href="#" class="music-list-order">
+										<img src="images/0.jpg" />
+									</a>
+									<p>浮生若梦，享一杯清茶...</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<footer>
+					<nav class="mui-bar mui-bar-tab">
+						<a class="mui-tab-item mui-active">
+							<span class="mui-icon mui-icon-home"></span>
+							<span class="mui-tab-label">首页</span>
+						</a>
+						<a class="mui-tab-item">
+							<span class="mui-icon mui-icon-phone"></span>
+							<span class="mui-tab-label">电话</span>
+						</a>
+						<a class="mui-tab-item">
+							<span class="mui-icon mui-icon-email"></span>
+							<span class="mui-tab-label">邮件</span>
+						</a>
+						<a class="mui-tab-item">
+							<span class="mui-icon mui-icon-gear"></span>
+							<span class="mui-tab-label">设置</span>
+						</a>
+					</nav>
+				</footer>
+			</div>
+			<!--作者：w20999hf@qq.com 时间：2016-03-25  描述：侧滑菜单开始-->
+			<aside id="offCanvasSide" class="mui-off-canvas-left">
+				<div id="offCanvasSideScroll" class="mui-scroll-wrapper" data-scroll="1">
+					<div class="mui-scroll" style="transform: translate3d(0px, 0px, 0px) translateZ(0px);">
+						<div class="title">侧滑导航</div>
+						<div class="content">
+							这是可拖动式侧滑菜单示例，你可以在这里放置任何内容；关闭侧滑菜单有多种方式： 1.在手机屏幕任意位置向左拖动(drag)；2.点击本侧滑菜单页之外的任意位置; 3.点击如下红色按钮
+							<span class="android-only" style="display: none;">；4.Android手机按back键；5.Android手机按menu键
+							</span>。
+							<p style="margin: 10px 15px;">
+								<button id="offCanvasHide" type="button" class="mui-btn mui-btn-danger mui-btn-block" style="padding: 5px 20px;">关闭侧滑菜单</button>
+							</p>
+
+						</div>
+						<div class="title" style="margin-bottom: 25px;">侧滑列表示例</div>
+						<ul class="mui-table-view mui-table-view-chevron mui-table-view-inverted">
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									Item 1
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									Item 2
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									Item 3
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									Item 4
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									Item 5
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									Item 6
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="mui-scrollbar mui-scrollbar-vertical">
+						<div class="mui-scrollbar-indicator" style="transition-duration: 0ms; display: block; height: 8px; transform: translate3d(0px, -8px, 0px) translateZ(0px);"></div>
+					</div>
+				</div>
+			</aside>
+			<!--描述：侧滑菜单结束-->
+		</div>
+	</body>
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
+		mui("#slider").slider({
+			interval: 3000
+		});
+		//侧滑容器父节点
+		var offCanvasWrapper = mui('#offCanvasWrapper');
+		//主界面容器
+		var offCanvasInner = offCanvasWrapper[0].querySelector('.mui-inner-wrap');
+
+		//侧滑容器的class列表，增加.mui-slide-in即可实现菜单移动、主界面不动的效果；
+		var classList = offCanvasWrapper[0].classList;
+		//变换侧滑动画移动效果；
+		offCanvasSide.classList.remove('mui-transitioning');
+		offCanvasSide.setAttribute('style', '');
+		classList.remove('mui-slide-in');
+		classList.remove('mui-scalable');
+		classList.add('mui-slide-in');
+		offCanvasWrapper.offCanvas().refresh();
+		//主界面和侧滑菜单界面均支持区域滚动；
+		mui('#offCanvasSideScroll').scroll();
+//		mui('#offCanvasContentScroll').scroll();
+		//实现ios平台原生侧滑关闭页面；
+		if (mui.os.plus && mui.os.ios) {
+			mui.plusReady(function() { //5+ iOS暂时无法屏蔽popGesture时传递touch事件，故该demo直接屏蔽popGesture功能
+				plus.webview.currentWebview().setStyle({
+					'popGesture': 'none'
+				});
+			});
+		}
+	</script>
+
+</html>
