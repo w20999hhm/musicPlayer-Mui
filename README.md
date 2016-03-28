@@ -1,1 +1,1 @@
-A musicPlayer build by MUI and AngularJS.
+A musicPlayer build by MUI.
