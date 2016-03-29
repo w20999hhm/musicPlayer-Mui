@@ -9,6 +9,12 @@
 		<link rel="stylesheet" type="text/css" href="fonts/iconfont.css" />
 		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
+			html,
+			body {
+				min-height: 100%;
+				overflow: hidden;
+			}
+			
 			.mui-table-view-cell:after {
 				left: 35px;
 			}
@@ -43,10 +49,15 @@
 				font-size: 12px;
 			}
 			
-			html,
-			body {
-				min-height: 100%;
-				background-color: #efeff4;
+			.playlist-wrap .mui-navigate-right:after,
+			.mui-push-right:after {
+				content: none;
+			}
+			
+			.playlist-wrap .menu-btn {
+				position: absolute;
+				top: 25px;
+				right: 10px;
 			}
 			
 			.animated {
@@ -67,8 +78,8 @@
 				}
 				0% {
 					opacity: 0;
-					-webkit-transform: translate3d(0, -100%, 0);
-					transform: translate3d(0, -100%, 0);
+					-webkit-transform: translate3d(0, 100%, 0);
+					transform: translate3d(0, 100%, 0);
 				}
 				60% {
 					opacity: 1;
@@ -100,8 +111,8 @@
 				}
 				0% {
 					opacity: 0;
-					-webkit-transform: translate3d(0, -100%, 0);
-					transform: translate3d(0, -100%, 0);
+					-webkit-transform: translate3d(0, 100%, 0);
+					transform: translate3d(0, 100%, 0);
 				}
 				60% {
 					opacity: 1;
@@ -138,8 +149,8 @@
 				}
 				0% {
 					opacity: 0;
-					-webkit-transform: translate3d(0, -100%, 0);
-					transform: translate3d(0, -100%, 0);
+					-webkit-transform: translate3d(0, 100%, 0);
+					transform: translate3d(0, 100%, 0);
 				}
 				60% {
 					opacity: 1;
@@ -171,8 +182,8 @@
 				}
 				0% {
 					opacity: 0;
-					-webkit-transform: translate3d(0, -100%, 0);
-					transform: translate3d(0, -100%, 0);
+					-webkit-transform: translate3d(0, 100%, 0);
+					transform: translate3d(0, 100%, 0);
 				}
 				60% {
 					opacity: 1;
@@ -211,8 +222,8 @@
 				}
 				100% {
 					opacity: 0;
-					-webkit-transform: translate3d(0, -100%, 0);
-					transform: translate3d(0, -100%, 0);
+					-webkit-transform: translate3d(0, 100%, 0);
+					transform: translate3d(0, 100%, 0);
 				}
 			}
 			
@@ -229,14 +240,14 @@
 				}
 				100% {
 					opacity: 0;
-					-webkit-transform: translate3d(0, -100%, 0);
-					transform: translate3d(0, -100%, 0);
+					-webkit-transform: translate3d(0, 100%, 0);
+					transform: translate3d(0, 100%, 0);
 				}
 			}
 			
 			.bounce-out-up {
-				-webkit-animation-name: fadeOutUp;
-				animation-name: fadeOutUp;
+				-webkit-animation-name: bounceOutUp;
+				animation-name: bounceOutUp;
 			}
 			
 			@-webkit-keyframes fadeOutUp {
@@ -252,8 +263,8 @@
 				}
 				100% {
 					opacity: 0;
-					-webkit-transform: translate3d(0, -100%, 0);
-					transform: translate3d(0, -100%, 0);
+					-webkit-transform: translate3d(0, 100%, 0);
+					transform: translate3d(0, 100%, 0);
 				}
 			}
 			
@@ -270,14 +281,14 @@
 				}
 				100% {
 					opacity: 0;
-					-webkit-transform: translate3d(0, -100%, 0);
-					transform: translate3d(0, -100%, 0);
+					-webkit-transform: translate3d(0, 100%, 0);
+					transform: translate3d(0, 100%, 0);
 				}
 			}
 			
 			.fade-out-up {
-				-webkit-animation-name: bounceOutUp;
-				animation-name: bounceOutUp;
+				-webkit-animation-name: fadeOutUp;
+				animation-name: fadeOutUp;
 			}
 			
 			.menu-open {
@@ -308,22 +319,23 @@
 				width: 100%;
 				display: block;
 				z-index: 998;
+				background-color: #666;
 			}
 			
 			.menu-wrapper {
 				position: absolute;
-				left: 0;
 				bottom: 0;
+				left: 0;
 				right: 0;
 				z-index: 999;
-				text-align: center;
-				background-color: #333;
+				text-align: left;
+				background-color: #FFFFFF;
 				width: 100%;
 			}
 			
 			.menu-wrapper.hidden {
-				-webkit-transform: translate3d(0, -100%, 0);
-				transform: translate3d(0, -100%, 0);
+				-webkit-transform: translate3d(0, 100%, 0);
+				transform: translate3d(0, 100%, 0);
 				z-index: -1;
 			}
 			
@@ -331,15 +343,12 @@
 				width: 100%;
 			}
 			
-			.menu .mui-table-view-inverted {
-				color: gray;
-				font-size: 19px;
+			.menu-wrapper .mui-table-view {
+				text-align: left;
 			}
 			
-			.menu .mui-table-view-inverted .mui-table-view-cell:after {
-				height: 2px;
-				left: 0;
-				right: 0;
+			.menu-wrapper .mui-table-view:before {
+				content: none;
 			}
 			
 			.menu-wrapper.mui-active,
@@ -348,92 +357,160 @@
 				transform: translate3d(0, 0, 0);
 			}
 			
-			#info {
-				padding: 20px 10px;
+			.menu-wrapper a {
+				font-size: 14px;
+			}
+			
+			.menu-wrapper .mui-table-view-cell>a:not(.mui-btn) {
+				color: #444;
 			}
 		</style>
 	</head>
 
 	<body>
 		<div class="mui-content">
-			<div class="playlistInfo">
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<div class="playlistInfo">
 
-			</div>
-			<div class="playlist-wrap">
-				<ul id="list" class="mui-table-view mui-table-view-chevron">
-					<li class="mui-table-view-cell">
-						<label class="playlist-index">1</label>
-						<a class="mui-navigate-right" href="examples/accordion.html">
-							<h4>We Are Nerver Ever Getting Show Me The Best Love</h4>
-							<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
-						</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<label class="playlist-index">2</label>
-						<a class="mui-navigate-right" href="examples/accordion.html">
-							<h4>accordion（折叠面板）</h4>
-							<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
-						</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<label class="playlist-index">3</label>
-						<a class="mui-navigate-right" href="examples/accordion.html">
-							<h4>accordion（折叠面板）</h4>
-							<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
-						</a>
-					</li>
-				</ul>
+					</div>
+					<div class="playlist-wrap">
+						<ul id="list" class="mui-table-view mui-table-view-chevron">
+							<li class="mui-table-view-cell">
+								<label class="playlist-index">1</label>
+								<a class="mui-navigate-right" href="playlistContent.html">
+									<h4>We Are Nerver Ever Getting Show Me The Best Love</h4>
+									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
+									<i class="iconfont menu-btn">&#xe609;</i>
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<label class="playlist-index">2</label>
+								<a class="mui-navigate-right" href="playlistContent.html">
+									<h4>accordion（折叠面板）</h4>
+									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
+									<i class="iconfont menu-btn">&#xe609;</i>
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<label class="playlist-index">3</label>
+								<a class="mui-navigate-right" href="playlistContent.html">
+									<h4>accordion（折叠面板）</h4>
+									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
+									<i class="iconfont menu-btn">&#xe609;</i>
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<label class="playlist-index">4</label>
+								<a class="mui-navigate-right" href="playlistContent.html">
+									<h4>We Are Nerver Ever Getting Show Me The Best Love</h4>
+									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
+									<i class="iconfont menu-btn">&#xe609;</i>
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<label class="playlist-index">5</label>
+								<a class="mui-navigate-right" href="playlistContent.html">
+									<h4>accordion（折叠面板）</h4>
+									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
+									<i class="iconfont menu-btn">&#xe609;</i>
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<label class="playlist-index">6</label>
+								<a class="mui-navigate-right" href="playlistContent.html">
+									<h4>accordion（折叠面板）</h4>
+									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
+									<i class="iconfont menu-btn">&#xe609;</i>
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<label class="playlist-index">7</label>
+								<a class="mui-navigate-right" href="playlistContent.html">
+									<h4>We Are Nerver Ever Getting Show Me The Best Love</h4>
+									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
+									<i class="iconfont menu-btn">&#xe609;</i>
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<label class="playlist-index">8</label>
+								<a class="mui-navigate-right" href="playlistContent.html">
+									<h4>accordion（折叠面板）</h4>
+									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
+									<i class="iconfont menu-btn">&#xe609;</i>
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<label class="playlist-index">9</label>
+								<a class="mui-navigate-right" href="playlistContent.html">
+									<h4>accordion（折叠面板）</h4>
+									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
+									<i class="iconfont menu-btn">&#xe609;</i>
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<label class="playlist-index">10</label>
+								<a class="mui-navigate-right" href="playlistContent.html">
+									<h4>We Are Nerver Ever Getting Show Me The Best Love</h4>
+									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
+									<i class="iconfont menu-btn">&#xe609;</i>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div id="menu-wrapper" class="menu-wrapper fade-out-up animated hidden">
-			<div id="menu" class="menu bounce-out-up animated">
-				<ul class="mui-table-view mui-table-view-inverted">
+		<div id="menu-wrapper" class="menu-wrapper hidden">
+			<div id="menu" class="menu">
+				<p>歌曲: 演员</p>
+				<ul class="mui-table-view">
 					<li class="mui-table-view-cell">
-						<a href="javascript:;">Item 1</a>
+						<a href="javascript:;">下一首播放</a>
 					</li>
 					<li class="mui-table-view-cell">
-						<a href="javascript:;">Item 2</a>
+						<a href="javascript:;">收藏到歌单</a>
 					</li>
 					<li class="mui-table-view-cell">
-						<a href="javascript:;">Item 3</a>
+						<a href="javascript:;">下载</a>
 					</li>
 					<li class="mui-table-view-cell">
-						<a href="javascript:;">Item 4</a>
+						<a href="javascript:;">评论(65)</a>
 					</li>
 					<li class="mui-table-view-cell">
-						<a href="javascript:;">Item 5</a>
+						<a href="javascript:;">分享</a>
 					</li>
 					<li class="mui-table-view-cell">
-						<a href="javascript:;">Item 6</a>
+						<a href="javascript:;">歌手: 薛之谦</a>
 					</li>
 					<li class="mui-table-view-cell">
-						<a href="javascript:;">Item 7</a>
+						<a href="javascript:;">专辑: 绅士</a>
 					</li>
 				</ul>
 			</div>
 		</div>
 		<div id="menu-backdrop" class="menu-backdrop" style="opacity: 0;"></div>
-
-		<button id="menu-btn" type="button" class="mui-btn mui-btn-primary mui-btn-block" style="padding: 10px;">
-			显示下拉菜单
-		</button>
 	</body>
 	<script>
 		mui.init({
 			swipeBack: true //启用右滑关闭功能
 		});
+		mui('.mui-scroll-wrapper').scroll({
+			deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+		});
+		window.onload = function() {
+			mui.plusReady(function() {
+				var self = plus.webview.currentWebview();
+				console.log(self.orderId);
+			});
+		}
 		var menuWrapper = document.getElementById("menu-wrapper");
 		var menu = document.getElementById("menu");
 		var menuWrapperClassList = menuWrapper.classList;
 		var backdrop = document.getElementById("menu-backdrop");
-		var info = document.getElementById("info");
 		backdrop.addEventListener('tap', toggleMenu);
-		document.getElementById("menu-btn").addEventListener('tap', toggleMenu);
+		mui('.playlist-wrap').on('tap', '.menu-btn', toggleMenu);
 		//下沉菜单中的点击事件
-		mui('#menu').on('tap', 'a', function() {
-			toggleMenu();
-			info.innerHTML = '你已选择：' + this.innerHTML;
-		});
 		var busying = false;
 
 		function toggleMenu() {
@@ -453,7 +530,7 @@
 				document.body.classList.add('menu-open');
 				menuWrapper.className = 'menu-wrapper fade-in-down animated mui-active';
 				menu.className = 'menu bounce-in-down animated';
-				backdrop.style.opacity = 1;
+				backdrop.style.opacity = 0.5;
 			}
 			setTimeout(function() {
 				busying = false;

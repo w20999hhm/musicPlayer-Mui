@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1458891278'); /* IE9*/
-  src: url('iconfont.eot?t=1458891278#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1458891278') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1458891278') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1458891278#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1459234663'); /* IE9*/
+  src: url('iconfont.eot?t=1459234663#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1459234663') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1459234663') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1459234663#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -23,4 +23,5 @@
 .icon-paixing:before { content: "\e602"; }
 .icon-rexiaopaixing:before { content: "\e603"; }
 .icon-tuijian:before { content: "\e605"; }
+.icon-appshusandian:before { content: "\e609"; }
 .icon-sociallastfm:before { content: "\e607"; }

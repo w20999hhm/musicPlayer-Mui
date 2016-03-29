@@ -9,6 +9,7 @@
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="fonts/iconfont.css" />
 		<link rel="stylesheet" href="css/index.css" />
+		<script src="js/mui.js"></script>
 		<style type="text/css">
 			.user-info {
 				height: 140px;
@@ -331,11 +332,11 @@
 											<li>
 												<a href="#" class="music-list-order">
 													<img src="images/2.jpg" />
+													<p>历史的画卷，王朝旧梦</p>
 												</a>
-												<p>历史的画卷，王朝旧梦</p>
 											</li>
 											<li>
-												<a href="#" class="music-list-order">
+												<a href="#" class="music-list-order" onclick="alert('1')">
 													<img src="images/2.jpg" />
 												</a>
 												<p>历史的画卷，王朝旧梦</p>
@@ -376,7 +377,7 @@
 									<div class="music-content">
 										<ul class="music-list">
 											<li>
-												<a href="#" class="music-list-order">
+												<a href="playlistContent.html" class="music-list-order">
 													<img src="images/2.jpg" />
 												</a>
 												<p>历史的画卷，王朝旧梦</p>
@@ -439,13 +440,13 @@
 								<div class="songList-content">
 									<ul class="mui-table-view mui-grid-view">
 										<li class="mui-table-view-cell mui-media mui-col-xs-6">
-											<a href="#">
+											<a href="###" data-id='1002'>
 												<img class="mui-media-object" src="images/0.jpg">
 												<div class="mui-media-body">幸福就是可以一起睡觉</div>
 											</a>
 										</li>
 										<li class="mui-table-view-cell mui-media mui-col-xs-6">
-											<a href="#">
+											<a href="###" data-id='1003'>
 												<img class="mui-media-object" src="images/1.jpg">
 												<div class="mui-media-body">想要一间这样的木屋，静静的喝咖啡</div>
 											</a>
@@ -543,7 +544,7 @@
 							<div class="mui-scroll">
 								<ul class="mui-table-view">
 									<li class="mui-table-view-cell">
-										第三个选项卡子项-1
+										<a href="playlistContent.html">第三个选项卡子项-1</a>
 									</li>
 									<li class="mui-table-view-cell">
 										第三个选项卡子项-2
@@ -689,18 +690,36 @@
 			<!--页面主内容结束-->
 		</div>
 	</body>
-	<script src="js/mui.min.js"></script>
 	<script type="text/javascript" charset="utf-8">
 		(function($) {
+			$.init();
 			$('.mui-control-content ').each(function() {
 				this.style.minHeight = document.documentElement.clientHeight - 135 + 'px';
 			});
-			$.init();
 			$("#slider").slider({
 				interval: 3000
 			});
 			$('.mui-scroll-wrapper').scroll({
 				indicators: true //是否显示滚动条
+			});
+			$('.songList-content').on('tap', 'a', function(e) {
+				mui.openWindow({
+					url: "playlistContent.html",
+					id: "playlistContent",
+					extras: {
+						orderId: this.getAttribute("data-id")
+					},
+					createNew: false, //是否重复创建同样id的webview，默认为false:不重复创建，直接显示
+					show: {
+						autoShow: true, //页面loaded事件发生后自动显示，默认为true
+						aniShow: "slide-in-right", //页面显示动画，默认为”slide-in-right“；
+						duration: 150 //页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒；
+					},
+					waiting: {
+						autoShow: true, //自动显示等待框，默认为true
+						title: '正在加载...' //等待对话框上显示的提示内容
+					}
+				})
 			});
 			if ($.os.plus && $.os.ios) {
 				$.plusReady(function() { //5+ iOS暂时无法屏蔽popGesture时传递touch事件，故该demo直接屏蔽popGesture功能
