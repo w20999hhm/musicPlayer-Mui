@@ -11,25 +11,25 @@
 		<style type="text/css">
 			html,
 			body {
-				min-height: 100%;
+				max-height: 100%;
 				overflow: hidden;
 			}
 			
 			.mui-table-view-cell:after {
-				left: 35px;
+				left: 40px;
 			}
 			
 			.mui-table-view-cell {
-				padding: 11px 35px;
+				padding: 11px 40px;
 			}
 			
 			.mui-table-view-cell>a:not(.mui-btn) {
-				margin: -11px -35px;
+				margin: -11px -40px;
 			}
 			
 			.mui-table-view-cell .playlist-index {
 				position: absolute;
-				left: 12px;
+				left: 15px;
 				top: 23px;
 				font-size: 16px;
 				color: #AAA;
@@ -298,7 +298,6 @@
 			
 			.menu-open .mui-scroll-wrapper {
 				position: absolute;
-				top: 48;
 				bottom: 0;
 				left: 0;
 				z-index: 1;
@@ -323,7 +322,7 @@
 			}
 			
 			.menu-wrapper {
-				position: absolute;
+				position: fixed;
 				bottom: 0;
 				left: 0;
 				right: 0;
@@ -337,6 +336,7 @@
 				-webkit-transform: translate3d(0, 100%, 0);
 				transform: translate3d(0, 100%, 0);
 				z-index: -1;
+				display: none;
 			}
 			
 			.menu {
@@ -364,6 +364,73 @@
 			.menu-wrapper .mui-table-view-cell>a:not(.mui-btn) {
 				color: #444;
 			}
+			
+			.menu-songName {
+				margin: 0px;
+				padding: 12px;
+			}
+			
+			.menu-icon {
+				position: absolute;
+				left: 12px;
+				color: #ff3e00;
+				font-size: 18px;
+			}
+			
+			.playlistInfo {
+				height: 240px;
+				width: 100%;
+				background: url(images/3.jpg) no-repeat;
+				background-attachment: fixed;
+				background-size: 100% 100%;
+				opacity: 0.6;
+			}
+			
+			.blur {
+				filter: url(blur.svg#blur);
+				-webkit-filter: blur(8px);
+				-moz-filter: blur(8px);
+				-ms-filter: blur(8px);
+				filter: blur(8px);
+				filter: progid: DXImageTransform.Microsoft.Blur(PixelRadius=8, MakeShadow=false);
+			}
+			
+			.playlist-img {
+				height: 130px;
+				width: 40%;
+				min-width: 140px;
+				margin-top: 50px;
+				margin-left: 15px;
+				float: left;
+			}
+			
+			.playlist-txt {
+				float: left;
+				margin-top: 65px;
+				margin-left: 20px;
+				width: 40%;
+				color: #fff;
+			}
+			
+			.playlist-header-wrap {
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 240px;
+				width: 100%;
+			}
+			
+			.playlist-atur {
+				margin-top: 20px;
+				font-size: 14px;
+			}
+			
+			.playlist-atur img {
+				width: 30%;
+				border-radius: 50%;
+				overflow: hidden;
+				vertical-align: middle;
+			}
 		</style>
 	</head>
 
@@ -371,14 +438,21 @@
 		<div class="mui-content">
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
-					<div class="playlistInfo">
-
+					<div class="playlistInfo blur"></div>
+					<div class="playlist-header-wrap">
+						<img src="images/0.jpg" class="playlist-img" />
+						<div class="playlist-txt">
+							深海少女的低声浅唱
+							<div class="playlist-atur">
+								<img src="images/head-0.jpg" /> 美妙_时光
+							</div>
+						</div>
 					</div>
 					<div class="playlist-wrap">
 						<ul id="list" class="mui-table-view mui-table-view-chevron">
 							<li class="mui-table-view-cell">
 								<label class="playlist-index">1</label>
-								<a class="mui-navigate-right" href="playlistContent.html">
+								<a class="mui-navigate-right" data-id='1'>
 									<h4>We Are Nerver Ever Getting Show Me The Best Love</h4>
 									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
 									<i class="iconfont menu-btn">&#xe609;</i>
@@ -386,7 +460,7 @@
 							</li>
 							<li class="mui-table-view-cell">
 								<label class="playlist-index">2</label>
-								<a class="mui-navigate-right" href="playlistContent.html">
+								<a class="mui-navigate-right" data-id='2'>
 									<h4>accordion（折叠面板）</h4>
 									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
 									<i class="iconfont menu-btn">&#xe609;</i>
@@ -394,7 +468,7 @@
 							</li>
 							<li class="mui-table-view-cell">
 								<label class="playlist-index">3</label>
-								<a class="mui-navigate-right" href="playlistContent.html">
+								<a class="mui-navigate-right" data-id='3'>
 									<h4>accordion（折叠面板）</h4>
 									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
 									<i class="iconfont menu-btn">&#xe609;</i>
@@ -463,27 +537,35 @@
 		</div>
 		<div id="menu-wrapper" class="menu-wrapper hidden">
 			<div id="menu" class="menu">
-				<p>歌曲: 演员</p>
+				<p class="menu-songName">歌曲: 演员</p>
 				<ul class="mui-table-view">
 					<li class="mui-table-view-cell">
-						<a href="javascript:;">下一首播放</a>
+						<i class="iconfont menu-icon">&#xe60b;</i>
+						<a href="javascript:;" data-id='1'>
+							下一首播放</a>
 					</li>
 					<li class="mui-table-view-cell">
-						<a href="javascript:;">收藏到歌单</a>
+						<i class="iconfont menu-icon">&#xe610;</i>
+						<a href="javascript:;" data-id='2'>收藏到歌单</a>
 					</li>
 					<li class="mui-table-view-cell">
+						<i class="iconfont menu-icon">&#xe615;</i>
 						<a href="javascript:;">下载</a>
 					</li>
 					<li class="mui-table-view-cell">
+						<i class="iconfont menu-icon">&#xe60f;</i>
 						<a href="javascript:;">评论(65)</a>
 					</li>
 					<li class="mui-table-view-cell">
+						<i class="iconfont menu-icon">&#xe614;</i>
 						<a href="javascript:;">分享</a>
 					</li>
 					<li class="mui-table-view-cell">
+						<i class="iconfont menu-icon">&#xe60c;</i>
 						<a href="javascript:;">歌手: 薛之谦</a>
 					</li>
 					<li class="mui-table-view-cell">
+						<i class="iconfont menu-icon">&#xe612;</i>
 						<a href="javascript:;">专辑: 绅士</a>
 					</li>
 				</ul>
@@ -503,6 +585,25 @@
 				var self = plus.webview.currentWebview();
 				console.log(self.orderId);
 			});
+			mui('#list').on('tap', 'a', function(e) {
+				mui.openWindow({
+					url: "player.html",
+					id: "player",
+					extras: {
+						songId: this.getAttribute("data-id")
+					},
+					createNew: true, //是否重复创建同样id的webview，默认为false:不重复创建，直接显示
+					show: {
+						autoShow: true, //页面loaded事件发生后自动显示，默认为true
+						aniShow: "slide-in-right", //页面显示动画，默认为”slide-in-right“；
+						duration: 150 //页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒；
+					},
+					waiting: {
+						autoShow: true, //自动显示等待框，默认为true
+						title: '正在加载...' //等待对话框上显示的提示内容
+					}
+				})
+			});
 		}
 		var menuWrapper = document.getElementById("menu-wrapper");
 		var menu = document.getElementById("menu");
@@ -511,6 +612,9 @@
 		backdrop.addEventListener('tap', toggleMenu);
 		mui('.playlist-wrap').on('tap', '.menu-btn', toggleMenu);
 		//下沉菜单中的点击事件
+		mui('#menu').on('tap', 'a', function() {
+			alert(mui("#menu-backdrop")[0].offsetHeight);
+		});
 		var busying = false;
 
 		function toggleMenu() {

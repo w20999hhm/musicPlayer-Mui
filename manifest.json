@@ -218,7 +218,25 @@
 					"js/mui.min.js",
 					"fonts/iconfont.css",
 					"fonts/mui.ttf",
-					"css/mui.min.css"
+					"css/mui.min.css",
+					"images/0.jpg",
+					"images/3.jpg",
+					"fonts/iconfont.woff",
+					"images/head-0.jpg"
+				],
+				"refer": [
+					"player.html"
+				],
+				"priority": 0
+			},
+			"player.html": {
+				"resources": [
+					"media/Dawn.mp3",
+					"js/player.js",
+					"js/common.js",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"js/immersed.js"
 				],
 				"refer": [],
 				"priority": 0
