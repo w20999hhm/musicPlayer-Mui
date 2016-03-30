@@ -4,10 +4,11 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		<meta name="HandheldFriendly" content="true" />
-		<meta name="MobileOptimized" content="320" />
-		<title>Hello H5+ 2</title>
+		<title>音乐播放</title>
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="js/common.js"></script>
+		<link rel="stylesheet" type="text/css" href="fonts/iconfont.css" />
 		<script type="text/javascript">
 			var gentry = null,
 				hl = null,
@@ -43,8 +44,8 @@
 				rt = document.getElementById("rtime");
 				ep = document.getElementById("play");
 				pt = document.getElementById("ptime");
+				st = document.getElementById("stime");
 				pp = document.getElementById("progress")
-				ps = document.getElementById("schedule");
 			}, false);
 			// 添加播放项
 			function createItem(entry) {
@@ -72,44 +73,68 @@
 			// 播放文件相关对象
 			var p = null,
 				pt = null,
+				st = null,
 				pp = null,
-				ps = null,
 				pi = null;
+
+			function load(url) {
+				var xhr = new XMLHttpRequest();
+				var ac = new(window.AudioContext || window.webkitAudioContext)();
+				xhr.open("GET", url);
+				xhr.responseType = "arraybuffer";
+				xhr.onload = function() {
+					ac.decodeAudioData(xhr.response, function(buffer) {
+						var bufferSource = ac.createBufferSource();
+						bufferSource.buffer = buffer;
+						bufferSource.connect(ac.destination);
+						bufferSource[bufferSource.start ? "start" : "noteOn"](0);
+					}, function(err) {
+						console.log(err);
+					})
+				}
+				xhr.send();
+			}
 			// 开始播放
 			function startPlay(url) {
-				ep.style.display = "block";
-				var L = pp.clientWidth;
-				p = plus.audio.createPlayer(url);
-				p.play(function() {
-					outLine("播放完成！");
-					// 播放完成
-					pt.innerText = timeToStr(d) + "/" + timeToStr(d);
-					ps.style.webkitTransition = "all 0.3s linear";
-					ps.style.width = L + "px";
-					stopPlay();
-				}, function(e) {
-					outLine("播放音频文件\"" + url + "\"失败：" + e.message);
-				});
-				// 获取总时长
-				var d = p.getDuration();
-				if (!d) {
-					pt.innerText = "00:00:00/" + timeToStr(d);
+				var pl = "undefined" == typeof(plus) ? null : plus;
+				if (pl) {
+					//ep.style.display = "block";
+					//var L = pp.clientWidth;
+					var L = 100;
+					p = plus.audio.createPlayer(url);
+					p.play(function() {
+						//outLine("播放完成！");
+						// 播放完成
+						st.innerText = timeToStr(d);
+						pt.innerText = timeToStr(d);
+						pp.value = L;
+						stopPlay();
+					}, function(e) {
+						//outLine("播放音频文件\"" + url + "\"失败：" + e.message);
+					});
+					// 获取总时长
+					var d = p.getDuration();
+					if (!d) {
+						st.innerText = "00:00";
+						pt.innerText = timeToStr(d);
+					}
+					pi = setInterval(function() {
+						if (!d) { // 兼容无法及时获取总时长的情况
+							d = p.getDuration();
+						}
+						var c = p.getPosition();
+						if (!c) { // 兼容无法及时获取当前播放位置的情况
+							return;
+						}
+						st.innerText = timeToStr(c);
+						pt.innerText = timeToStr(d);
+						var pct = Math.round(L * c / d);
+						pp.value = pct;
+					}, 1000);
+				} else {
+					url = url.substring(url.indexOf('/') + 1, url.length);
+					load(url);
 				}
-				pi = setInterval(function() {
-					if (!d) { // 兼容无法及时获取总时长的情况
-						d = p.getDuration();
-					}
-					var c = p.getPosition();
-					if (!c) { // 兼容无法及时获取当前播放位置的情况
-						return;
-					}
-					pt.innerText = timeToStr(c) + "/" + timeToStr(d);
-					var pct = Math.round(L * c / d);
-					if (pct < 8) {
-						pct = 8;
-					}
-					ps.style.width = pct + "px";
-				}, 1000);
 			}
 			// 停止播放
 			function stopPlay() {
@@ -125,9 +150,8 @@
 			// 重置播放页面内容
 			function resetPlay() {
 				ep.style.display = "none";
-				ps.style.width = "8px";
-				ps.style.webkitTransition = "all 1s linear";
-				pt.innerText = "00:00:00/00:00:00";
+				st.innerText = "00:00";
+				pt.innerText = "00:00";
 			}
 			// 重写关闭
 			var _back = window.back;
@@ -145,148 +169,219 @@
 			window.back = resetback;
 		</script>
 		<style type="text/css">
-			.rp {
-				width: 100%;
+			html,
+			body,
+			.mui-content {
 				height: 100%;
-				display: none;
-				text-align: center;
-				position: fixed;
-				top: 0;
-				background: rgba(0, 0, 0, 0.8);
-				z-index: 9999;
-				overflow: hidden;
+				background: rgba(0, 0, 0, 0.3);
 			}
 			
-			.aname {
-				font-size: 16px;
+			.wrap {
+				margin: 80px 0 0;
 			}
 			
-			.ainf {
-				font-size: 12px;
-			}
-			
-			.rtime {
-				font-size: 22px;
-				color: #FF0000;
-			}
-			
-			.ptime {
-				margin-top: 40%;
-				font-size: 22px;
-				color: #FFFFFF;
-			}
-			
-			.rprogress {
-				background: url(../img/arecord.png) no-repeat center center;
-				background-size: 32px 32px;
-			}
-			
-			.rschedule {
-				background-color: rgba(0, 0, 0, 0);
-				border: 5px solid rgba(0, 183, 229, 0.9);
-				opacity: .9;
-				border-left: 5px solid rgba(0, 0, 0, 0);
-				border-right: 5px solid rgba(0, 0, 0, 0);
-				border-radius: 50px;
-				box-shadow: 0 0 15px #2187e7;
-				width: 36px;
-				height: 36px;
+			.record {
+				width: 200px;
+				height: 200px;
 				margin: 0 auto;
-				-webkit-animation: spin 1s infinite linear;
-				animation: spin 1s infinite linear;
+				position: relative;
 			}
 			
-			@-webkit-keyframes spin {
+			.record img {
+				width: 200px;
+				height: 200px;
+				margin: 0 auto;
+				border-radius: 200px;
+			}
+			
+			@-webkit-keyframes rotateNow {
 				0% {
-					-webkit-transform: rotate(0deg);
+					-webkit-transform: rotate(0);
 				}
 				100% {
 					-webkit-transform: rotate(360deg);
 				}
 			}
 			
-			@keyframes spin {
+			@-moz-keyframes rotateNow {
 				0% {
-					transform: rotate(0deg);
+					-moz-transform: rotate(0);
+				}
+				100% {
+					-moz-transform: rotate(360deg);
+				}
+			}
+			
+			@keyframes rotateNow {
+				0% {
+					transform: rotate(0);
 				}
 				100% {
 					transform: rotate(360deg);
 				}
 			}
 			
-			.progress {
-				width: 90%;
-				background-color: #666;
-				margin: 0 5%;
-				border: 1px solid #222;
-				-webkit-border-radius: 5px;
-				border-radius: 5px;
+			.rotateImg {
+				-webkit-animation: rotateNow 10s linear 2s infinite;
+				-moz-animation: rotateNow 10s linear 2s infinite;
+				-o-animation: rotateNow 10s linear 2s infinite;
+				animation: rotateNow 10s linear 2s infinite;
 			}
 			
-			.schedule {
-				width: 8px;
-				height: 8px;
-				margin: 1px 0;
-				background-color: #FFCC33;
-				-webkit-border-radius: 4px;
-				border-radius: 4px;
+			@-webkit-keyframes playNow {
+				0% {
+					-webkit-transform-origin: 66px top;
+					-webkit-transform: rotate(0);
+				}
+				100% {
+					-webkit-transform-origin: 66px top;
+					-webkit-transform: rotate(30deg);
+				}
+			}
+			
+			@-moz-keyframes playNow {
+				0% {
+					-moz-transform-origin: 66px top;
+					-moz-transform: rotate(0);
+				}
+				100% {
+					-moz-transform-origin: 66px top;
+					-moz-transform: rotate(30deg);
+				}
+			}
+			
+			@keyframes playNow {
+				0% {
+					transform-origin: 66px top;
+					transform: rotate(0);
+				}
+				100% {
+					transform-origin: 66px top;
+					transform: rotate(30deg);
+				}
+			}
+			
+			.play {
+				position: absolute;
+				z-index: 100;
+				right: -80px;
+				top: -10px;
+				background-image: url(images/play.png);
+				background-position: 0 0;
+				background-repeat: no-repeat;
+				width: 143px;
+				height: 134px;
+			}
+			
+			.playNow {
+				-webkit-animation: playNow 2s linear 2s;
+				-moz-animation: playNow 2s linear 2s;
+				-o-animation: playNow 2s linear 2s;
+				animation: playNow 2s linear 2s;
+			}
+			
+			.player-control {
+				height: 150px;
+				border: 1px solid #333333;
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+				width: 100%;
+			}
+			
+			.control {
+				width: 100%;
+				height: 50px;
+				line-height: 50px;
+			}
+			
+			.progra {
+				height: 80px;
+				width: 100%;
+			}
+			
+			.progra .mui-input-row.mui-input-range {
+				padding: 30px 60px;
+			}
+			
+			.progra .program {
+				width: 100%;
+				margin: 0 auto;
+			}
+			
+			.control span {
+				width: 20%;
+				text-align: center;
+				float: left;
+			}
+			
+			.control .iconfont {
+				color: #FFFFFF;
+				font-size: 30px;
+			}
+			
+			.control .icon-bofang {
+				font-size: 40px;
+				vertical-align: middle;
+				padding-bottom: 8px;
+				display: inline-block;
+			}
+			
+			.ptime,
+			.stime {
+				position: absolute;
+				font-size: 12px;
+				top: 38px;
+				color: #CCC;
+			}
+			
+			.ptime {
+				right: 20px;
+			}
+			
+			.stime {
+				left: 20px;
+			}
+			
+			#progress {
 				-webkit-transition: all 1s linear;
 				transition: all 1s linear;
 			}
 			
-			.stop {
-				width: 72px;
-				height: 72px;
-				background: url(../img/astop.png) center center;
-				background-size: 72px 72px;
-				margin: auto;
-				-webkit-border-radius: 72px;
-				border-radius: 72px;
-			}
-			
-			.stop:active {
-				-webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5) inset;
-				box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5) inset;
-			}
-			
-			.iplay {
-				display: block;
-				background-size: 50px 44px;
-				-ms-touch-action: auto;
+			.mui-input-range input[type=range]::-webkit-slider-thumb {
+				width: 15px;
+				height: 15px;
 			}
 		</style>
 	</head>
 
 	<body>
-		<header id="header">
-			<div class="nvbt iback" onclick="back(true);"></div>
-			<div class="nvtt">Audio</div>
-			<div class="nvbt idoc" onclick="openDoc('Audio Document','/doc/audio.html')"></div>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">音乐播放</h1>
 		</header>
-		<div id="dcontent" class="dcontent">
-			<div class="button" onclick="startPlay('_www/audio/wispering.mp3')">播放音乐</div>
-		</div>
-		<div id="play" class="rp">
-			<div id="ptime" class="ptime">00:00:00/00:00:00</div>
-			<br/>
-			<div id="progress" class="progress">
-				<div id="schedule" class="schedule"></div>
+		<div class="mui-content">
+			<div class="wrap">
+				<div class="record">
+					<img class="rotateImg" src="images/2.jpg" />
+				</div>
 			</div>
-			<br/>
-			<div class="stop" onclick="stopPlay();outSet('停止播放！');"></div>
-		</div>
-		<div id="record" class="rp">
-			<div style="width:100%;height:20%;"></div>
-			<div class="rprogress">
-				<div class="rschedule"></div>
+			<div class="player-control">
+				<div class="progra">
+					<div class="mui-input-row mui-input-range">
+						<input type="range" id="progress" value="0" min="0" max="100" data-input-slider="4"><span class="mui-tooltip mui-hidden" style="left: 176.04px;">77</span>
+					</div>
+					<div id="ptime" class="ptime">00:00</div>
+					<div id="stime" class="stime">00:00</div>
+				</div>
+				<div class="control">
+					<span><i class="iconfont icon-suijibofang"></i></span>
+					<span><i class="iconfont icon-shangyiqu"></i></span>
+					<span onclick="startPlay('_www/audio/sering.mp3')"><i class="iconfont icon-bofang"></i></span>
+					<span><i class="iconfont icon-xiayiqu"></i></span>
+					<span><i class="iconfont icon-liebiao"></i></span>
+				</div>
 			</div>
-			<br/>
-			<div id="rtime" class="rtime">00:00:00</div>
-			<br/>
-			<div class="stop" onclick="stopRecord();"></div>
-		</div>
-		<div id="output">
-			Audio用于管理音频设备，可调用麦克风录制音频文件，也可播放音频文件。
 		</div>
 	</body>
 	<script type="text/javascript" src="js/immersed.js"></script>

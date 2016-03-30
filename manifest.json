@@ -236,7 +236,11 @@
 					"js/common.js",
 					"js/mui.min.js",
 					"css/mui.min.css",
-					"js/immersed.js"
+					"js/immersed.js",
+					"images/2.jpg",
+					"fonts/iconfont.css",
+					"fonts/mui.ttf",
+					"fonts/iconfont.woff"
 				],
 				"refer": [],
 				"priority": 0

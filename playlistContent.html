@@ -455,80 +455,56 @@
 								<a class="mui-navigate-right" data-id='1'>
 									<h4>We Are Nerver Ever Getting Show Me The Best Love</h4>
 									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
-									<i class="iconfont menu-btn">&#xe609;</i>
 								</a>
+								<i class="iconfont menu-btn">&#xe609;</i>
 							</li>
 							<li class="mui-table-view-cell">
 								<label class="playlist-index">2</label>
 								<a class="mui-navigate-right" data-id='2'>
 									<h4>accordion（折叠面板）</h4>
 									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
-									<i class="iconfont menu-btn">&#xe609;</i>
 								</a>
+								<i class="iconfont menu-btn">&#xe609;</i>
 							</li>
 							<li class="mui-table-view-cell">
 								<label class="playlist-index">3</label>
 								<a class="mui-navigate-right" data-id='3'>
 									<h4>accordion（折叠面板）</h4>
 									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
-									<i class="iconfont menu-btn">&#xe609;</i>
 								</a>
+								<i class="iconfont menu-btn">&#xe609;</i>
 							</li>
 							<li class="mui-table-view-cell">
 								<label class="playlist-index">4</label>
 								<a class="mui-navigate-right" href="playlistContent.html">
 									<h4>We Are Nerver Ever Getting Show Me The Best Love</h4>
 									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
-									<i class="iconfont menu-btn">&#xe609;</i>
 								</a>
+								<i class="iconfont menu-btn">&#xe609;</i>
 							</li>
 							<li class="mui-table-view-cell">
-								<label class="playlist-index">5</label>
-								<a class="mui-navigate-right" href="playlistContent.html">
+								<label class="playlist-index">2</label>
+								<a class="mui-navigate-right" data-id='2'>
 									<h4>accordion（折叠面板）</h4>
 									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
-									<i class="iconfont menu-btn">&#xe609;</i>
 								</a>
+								<i class="iconfont menu-btn">&#xe609;</i>
 							</li>
 							<li class="mui-table-view-cell">
-								<label class="playlist-index">6</label>
-								<a class="mui-navigate-right" href="playlistContent.html">
+								<label class="playlist-index">3</label>
+								<a class="mui-navigate-right" data-id='3'>
 									<h4>accordion（折叠面板）</h4>
 									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
-									<i class="iconfont menu-btn">&#xe609;</i>
 								</a>
+								<i class="iconfont menu-btn">&#xe609;</i>
 							</li>
 							<li class="mui-table-view-cell">
-								<label class="playlist-index">7</label>
+								<label class="playlist-index">4</label>
 								<a class="mui-navigate-right" href="playlistContent.html">
 									<h4>We Are Nerver Ever Getting Show Me The Best Love</h4>
 									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
-									<i class="iconfont menu-btn">&#xe609;</i>
 								</a>
-							</li>
-							<li class="mui-table-view-cell">
-								<label class="playlist-index">8</label>
-								<a class="mui-navigate-right" href="playlistContent.html">
-									<h4>accordion（折叠面板）</h4>
-									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
-									<i class="iconfont menu-btn">&#xe609;</i>
-								</a>
-							</li>
-							<li class="mui-table-view-cell">
-								<label class="playlist-index">9</label>
-								<a class="mui-navigate-right" href="playlistContent.html">
-									<h4>accordion（折叠面板）</h4>
-									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
-									<i class="iconfont menu-btn">&#xe609;</i>
-								</a>
-							</li>
-							<li class="mui-table-view-cell">
-								<label class="playlist-index">10</label>
-								<a class="mui-navigate-right" href="playlistContent.html">
-									<h4>We Are Nerver Ever Getting Show Me The Best Love</h4>
-									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
-									<i class="iconfont menu-btn">&#xe609;</i>
-								</a>
+								<i class="iconfont menu-btn">&#xe609;</i>
 							</li>
 						</ul>
 					</div>
@@ -586,6 +562,7 @@
 				console.log(self.orderId);
 			});
 			mui('#list').on('tap', 'a', function(e) {
+				console.log(this);
 				mui.openWindow({
 					url: "player.html",
 					id: "player",
