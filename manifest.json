@@ -240,7 +240,12 @@
 					"images/2.jpg",
 					"fonts/iconfont.css",
 					"fonts/mui.ttf",
-					"fonts/iconfont.woff"
+					"fonts/iconfont.woff",
+					"js/musicVisualizer.js",
+					"css/player.css",
+					"images/0.jpg",
+					"images/1.jpg",
+					"images/play_bk.png"
 				],
 				"refer": [],
 				"priority": 0

@@ -1,42 +1,54 @@
 {
-	"index.html": {
-		"resources": [
-			"images/0.jpg",
-			"images/2.jpg",
-			"fonts/iconfont.css",
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"images/1.jpg",
-			"css/mui.min.css",
-			"images/3.jpg",
-			"fonts/iconfont.woff",
-			"css/index.css",
-			"images/menu-bk.jpg",
-			"images/head-0.jpg",
-			"js/mui.js"
-		],
-		"refer": [
-			"playlistContent.html"
-		]
-	},
-	"playlistContent.html": {
-		"resources": [
-			"js/mui.min.js"
-		],
-		"refer": [
-			"player.html"
-		]
-	},
-	"player.html": {
-		"resources": [
-			"js/common.js",
-			"js/immersed.js",
-			"images/2.jpg",
-			"fonts/iconfont.css",
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"fonts/iconfont.woff"
-		]
-	}
+  "index.html": {
+    "resources": [
+      "images/0.jpg",
+      "images/2.jpg",
+      "fonts/iconfont.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "images/1.jpg",
+      "css/mui.min.css",
+      "images/3.jpg",
+      "fonts/iconfont.woff",
+      "css/index.css",
+      "images/menu-bk.jpg",
+      "images/head-0.jpg",
+      "js/mui.js"
+    ],
+    "refer": [
+      "playlistContent.html"
+    ]
+  },
+  "playlistContent.html": {
+    "resources": [
+      "js/mui.min.js",
+      "images/0.jpg",
+      "fonts/iconfont.css",
+      "css/mui.min.css",
+      "images/3.jpg",
+      "fonts/iconfont.woff",
+      "images/head-0.jpg"
+    ],
+    "refer": [
+      "player.html"
+    ]
+  },
+  "player.html": {
+    "resources": [
+      "js/common.js",
+      "js/immersed.js",
+      "images/2.jpg",
+      "fonts/iconfont.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "fonts/iconfont.woff",
+      "js/musicVisualizer.js",
+      "css/player.css",
+      "images/0.jpg",
+      "images/1.jpg",
+      "images/play_bk.png"
+    ],
+    "refer": []
+  }
 }

@@ -9,12 +9,33 @@
 		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="js/common.js"></script>
 		<link rel="stylesheet" type="text/css" href="fonts/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="css/player.css" />
+		<script src="js/musicVisualizer.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
+			mui.init();
+			var songList = [{
+				name: "sering.mp3",
+				index: "0",
+				cover: "images/0.jpg"
+			}, {
+				name: "wind.mp3",
+				index: "1",
+				cover: "images/1.jpg"
+			}, {
+				name: "Xandria - Eversleeping.mp3",
+				index: "2",
+				cover: "images/2.jpg"
+			}];
 			var gentry = null,
 				hl = null,
-				le = null;
-			var er = null,
-				ep = null;
+				le = null,
+				gallery = null,
+				er = null,
+				ep = null,
+				bf = null,
+				baseUrl = '_www/audio/',
+				zt = null,
+				visualizer = null;
 			// H5 plus事件处理
 			function plusReady() {
 				// 获取音频目录对象
@@ -35,76 +56,111 @@
 			} else {
 				document.addEventListener("plusready", plusReady, false);
 			}
+			if (window.AudioContext || window.webkitAudioContext || window.mozAudioContext) {
+				visualizer = new MusicVisualizer({
+					onended: function() {
+						nextSong();
+						busy = false;
+					}
+				});
+			}
 			// DOMContentLoaded事件处理
 			document.addEventListener("DOMContentLoaded", function() {
 				// 获取DOM元素对象
 				hl = document.getElementById("history");
 				le = document.getElementById("empty");
 				er = document.getElementById("record");
-				rt = document.getElementById("rtime");
+				ri = document.getElementById("rotateImg");
 				ep = document.getElementById("play");
 				pt = document.getElementById("ptime");
 				st = document.getElementById("stime");
 				pp = document.getElementById("progress")
+				bf = document.getElementById("bofang-btn");
+				zt = document.getElementById("zanting-btn");
+				xyq = document.getElementById("xiayiqu-btn");
+				syq = document.getElementById("shangyiqu-btn");
+				gallery = mui('.mui-slider');
 			}, false);
-			// 添加播放项
-			function createItem(entry) {
-				var li = document.createElement("li");
-				li.className = "ditem";
-				li.innerHTML = '<span class="iplay"><font class="aname"></font><br/><font class="ainf"></font></span>';
-				li.setAttribute("onclick", "playAudio(this);");
-				hl.insertBefore(li, le.nextSibling);
-				li.querySelector(".aname").innerText = entry.name;
-				li.querySelector(".ainf").innerText = "...";
-				li.entry = entry;
-				updateInformation(li);
-				// 设置空项不可见
-				le.style.display = "none";
-			}
-			// 播放音频文件
-			function playAudio(li) {
-				if (!li || !li.entry) {
-					ouSet("无效的音频文件");
-					return;
-				}
-				outSet("播放音频文件：" + li.entry.name);
-				startPlay("_doc/audio/" + li.entry.name);
-			}
 			// 播放文件相关对象
 			var p = null,
 				pt = null,
 				st = null,
 				pp = null,
-				pi = null;
-
-			function load(url) {
-				var xhr = new XMLHttpRequest();
-				var ac = new(window.AudioContext || window.webkitAudioContext)();
-				xhr.open("GET", url);
-				xhr.responseType = "arraybuffer";
-				xhr.onload = function() {
-					ac.decodeAudioData(xhr.response, function(buffer) {
-						var bufferSource = ac.createBufferSource();
-						bufferSource.buffer = buffer;
-						bufferSource.connect(ac.destination);
-						bufferSource[bufferSource.start ? "start" : "noteOn"](0);
-					}, function(err) {
-						console.log(err);
-					})
-				}
-				xhr.send();
+				busy = false,
+				pi = null,
+				songIndex = 0,
+				isMobile = true,
+				isApple = false;
+			window.onload = function() {
+				// 开始播放
+				bf.addEventListener('tap', function() {
+					playSong(songList[songIndex]);
+				});
+				// 停止播放
+				zt.addEventListener('tap', function() {
+					stopSong();
+				});
+				//下一曲
+				xyq.addEventListener('tap', function() {
+					nextSong();
+				})
+				syq.addEventListener('tap', function() {
+					prevSong();
+				})
+				gallery[0].addEventListener('swipeleft', function() {
+					nextSong();
+				})
+				gallery[0].addEventListener('swiperight', function() {
+					if (songIndex == 0) return false;
+					prevSong();
+				})
 			}
-			// 开始播放
-			function startPlay(url) {
-				var pl = "undefined" == typeof(plus) ? null : plus;
-				if (pl) {
+
+			function nextSong() {
+				if (busy || !visualizer) stopSong();
+				++songIndex;
+				songIndex = songIndex >= songList.length ? 0 : songIndex;
+				playSong(songList[songIndex]);
+			}
+
+			function prevSong() {
+				if (busy || !visualizer) stopSong();
+				--songIndex;
+				songIndex = songIndex < 0 ? 0 : songIndex;
+				playSong(songList[songIndex]);
+			}
+
+			function stopSong() {
+				zt.className += " hidden";
+				zt.previousElementSibling.className = zt.previousElementSibling.className.replace(/ hidden/g, '');
+				clearInterval(pi);
+				pi = null;
+				if (!visualizer) {
+					setTimeout(resetPlay, 500);
+					// 操作播放对象
+					if (p) {
+						p.stop();
+						p = null;
+					}
+				} else {
+					if (busy) {
+						visualizer.stop();
+					}
+				}
+				busy = false
+			}
+
+			function playSong(song) {
+				var url = baseUrl + song.name;
+				if (!visualizer) {
 					//ep.style.display = "block";
 					//var L = pp.clientWidth;
+					bf.className += " hidden";
+					bf.nextElementSibling.className = bf.nextElementSibling.className.replace(/ hidden/g, '');
+					gallery.slider().gotoItem(songIndex);
 					var L = 100;
 					p = plus.audio.createPlayer(url);
 					p.play(function() {
-						//outLine("播放完成！");
-						// 播放完成
 						st.innerText = timeToStr(d);
 						pt.innerText = timeToStr(d);
 						pp.value = L;
@@ -133,23 +189,25 @@
 					}, 1000);
 				} else {
 					url = url.substring(url.indexOf('/') + 1, url.length);
-					load(url);
-				}
-			}
-			// 停止播放
-			function stopPlay() {
-				clearInterval(pi);
-				pi = null;
-				setTimeout(resetPlay, 500);
-				// 操作播放对象
-				if (p) {
-					p.stop();
-					p = null;
+					visualizer.play(url, isMobile, function(v) {
+						pt.innerText = timeToStr(v.duration);
+						busy = true;
+						bf.className += " hidden";
+						bf.nextElementSibling.className = bf.nextElementSibling.className.replace(/ hidden/g, '');
+						gallery.slider().gotoItem(songIndex);
+						var count = 1;
+						pi = setInterval(function() {
+							st.innerText = timeToStr(count);
+							var pct = Math.round(100 * v.sampleRate * count / v.length);
+							pp.value = pct;
+							count++
+						}, 1000);
+					});
 				}
 			}
 			// 重置播放页面内容
 			function resetPlay() {
-				ep.style.display = "none";
+				pp.value = 0;
 				st.innerText = "00:00";
 				pt.innerText = "00:00";
 			}
@@ -168,191 +226,6 @@
 			}
 			window.back = resetback;
 		</script>
-		<style type="text/css">
-			html,
-			body,
-			.mui-content {
-				height: 100%;
-				background: rgba(0, 0, 0, 0.3);
-			}
-			
-			.wrap {
-				margin: 80px 0 0;
-			}
-			
-			.record {
-				width: 200px;
-				height: 200px;
-				margin: 0 auto;
-				position: relative;
-			}
-			
-			.record img {
-				width: 200px;
-				height: 200px;
-				margin: 0 auto;
-				border-radius: 200px;
-			}
-			
-			@-webkit-keyframes rotateNow {
-				0% {
-					-webkit-transform: rotate(0);
-				}
-				100% {
-					-webkit-transform: rotate(360deg);
-				}
-			}
-			
-			@-moz-keyframes rotateNow {
-				0% {
-					-moz-transform: rotate(0);
-				}
-				100% {
-					-moz-transform: rotate(360deg);
-				}
-			}
-			
-			@keyframes rotateNow {
-				0% {
-					transform: rotate(0);
-				}
-				100% {
-					transform: rotate(360deg);
-				}
-			}
-			
-			.rotateImg {
-				-webkit-animation: rotateNow 10s linear 2s infinite;
-				-moz-animation: rotateNow 10s linear 2s infinite;
-				-o-animation: rotateNow 10s linear 2s infinite;
-				animation: rotateNow 10s linear 2s infinite;
-			}
-			
-			@-webkit-keyframes playNow {
-				0% {
-					-webkit-transform-origin: 66px top;
-					-webkit-transform: rotate(0);
-				}
-				100% {
-					-webkit-transform-origin: 66px top;
-					-webkit-transform: rotate(30deg);
-				}
-			}
-			
-			@-moz-keyframes playNow {
-				0% {
-					-moz-transform-origin: 66px top;
-					-moz-transform: rotate(0);
-				}
-				100% {
-					-moz-transform-origin: 66px top;
-					-moz-transform: rotate(30deg);
-				}
-			}
-			
-			@keyframes playNow {
-				0% {
-					transform-origin: 66px top;
-					transform: rotate(0);
-				}
-				100% {
-					transform-origin: 66px top;
-					transform: rotate(30deg);
-				}
-			}
-			
-			.play {
-				position: absolute;
-				z-index: 100;
-				right: -80px;
-				top: -10px;
-				background-image: url(images/play.png);
-				background-position: 0 0;
-				background-repeat: no-repeat;
-				width: 143px;
-				height: 134px;
-			}
-			
-			.playNow {
-				-webkit-animation: playNow 2s linear 2s;
-				-moz-animation: playNow 2s linear 2s;
-				-o-animation: playNow 2s linear 2s;
-				animation: playNow 2s linear 2s;
-			}
-			
-			.player-control {
-				height: 150px;
-				border: 1px solid #333333;
-				position: absolute;
-				bottom: 0px;
-				left: 0px;
-				width: 100%;
-			}
-			
-			.control {
-				width: 100%;
-				height: 50px;
-				line-height: 50px;
-			}
-			
-			.progra {
-				height: 80px;
-				width: 100%;
-			}
-			
-			.progra .mui-input-row.mui-input-range {
-				padding: 30px 60px;
-			}
-			
-			.progra .program {
-				width: 100%;
-				margin: 0 auto;
-			}
-			
-			.control span {
-				width: 20%;
-				text-align: center;
-				float: left;
-			}
-			
-			.control .iconfont {
-				color: #FFFFFF;
-				font-size: 30px;
-			}
-			
-			.control .icon-bofang {
-				font-size: 40px;
-				vertical-align: middle;
-				padding-bottom: 8px;
-				display: inline-block;
-			}
-			
-			.ptime,
-			.stime {
-				position: absolute;
-				font-size: 12px;
-				top: 38px;
-				color: #CCC;
-			}
-			
-			.ptime {
-				right: 20px;
-			}
-			
-			.stime {
-				left: 20px;
-			}
-			
-			#progress {
-				-webkit-transition: all 1s linear;
-				transition: all 1s linear;
-			}
-			
-			.mui-input-range input[type=range]::-webkit-slider-thumb {
-				width: 15px;
-				height: 15px;
-			}
-		</style>
 	</head>
 
 	<body>
@@ -362,8 +235,24 @@
 		</header>
 		<div class="mui-content">
 			<div class="wrap">
-				<div class="record">
-					<img class="rotateImg" src="images/2.jpg" />
+				<div id="slider" class="mui-slider">
+					<div class="mui-slider-group">
+						<div class="mui-slider-item">
+							<div class="record rotateImg">
+								<img id="rotateImg" src="images/0.jpg" />
+							</div>
+						</div>
+						<div class="mui-slider-item">
+							<div class="record rotateImg">
+								<img id="rotateImg" src="images/1.jpg" />
+							</div>
+						</div>
+						<div class="mui-slider-item">
+							<div class="record rotateImg">
+								<img id="rotateImg" src="images/2.jpg" />
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="player-control">
@@ -376,9 +265,12 @@
 				</div>
 				<div class="control">
 					<span><i class="iconfont icon-suijibofang"></i></span>
-					<span><i class="iconfont icon-shangyiqu"></i></span>
-					<span onclick="startPlay('_www/audio/sering.mp3')"><i class="iconfont icon-bofang"></i></span>
-					<span><i class="iconfont icon-xiayiqu"></i></span>
+					<span><i id="shangyiqu-btn" class="iconfont icon-shangyiqu"></i></span>
+					<span>
+						<i id="bofang-btn" class="iconfont icon-bofang"></i>
+						<i id="zanting-btn" class="iconfont icon-zanting hidden"></i>
+					</span>
+					<span><i id="xiayiqu-btn" class="iconfont icon-xiayiqu"></i></span>
 					<span><i class="iconfont icon-liebiao"></i></span>
 				</div>
 			</div>

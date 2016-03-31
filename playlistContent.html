@@ -56,8 +56,9 @@
 			
 			.playlist-wrap .menu-btn {
 				position: absolute;
-				top: 25px;
-				right: 10px;
+				top: 0px;
+				right: 0px;
+				padding: 23px 10px;
 			}
 			
 			.animated {
@@ -562,7 +563,6 @@
 				console.log(self.orderId);
 			});
 			mui('#list').on('tap', 'a', function(e) {
-				console.log(this);
 				mui.openWindow({
 					url: "player.html",
 					id: "player",

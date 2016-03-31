@@ -1,0 +1,73 @@
+{
+	"musicList": [
+		{
+			"name": "sering.mp3",
+			"id": "1",
+			"orderId": "1001",
+			"imgPath": "images/0.jpg",
+			"index": "1"
+		}, {
+			"name": "wind.mp3",
+			"id": "2",
+			"orderId": "1001",
+			"imgPath": "images/1.jpg",
+			"index": "3"
+		}, {
+			"name": "Xandria - Eversleeping.mp3",
+			"id": "3",
+			"orderId": "1001",
+			"imgPath": "images/2.jpg",
+			"index": "2"
+		}
+	],
+	"orderList": [
+		{
+			"id": "1001",
+			"name": "历史的画卷，王朝旧梦",
+			"imgPath": "images/0.jpg",
+			"playCount": "2568",
+			"authorId": "101002"
+		}, {
+			"id": "1002",
+			"name": "浮生若梦，享一杯清茶",
+			"imgPath": "images/0.jpg",
+			"playCount": "12568",
+			"authorId": "101001"
+		}, {
+			"id": "1003",
+			"name": "能把声音传递给天堂的歌者",
+			"imgPath": "images/1.jpg",
+			"playCount": "21568",
+			"authorId": "101003"
+		}, {
+			"id": "1004",
+			"name": "单恋是一个人的兵荒马乱",
+			"imgPath": "images/2.jpg",
+			"playCount": "111568",
+			"authorId": "101004"
+		}, {
+			"id": "1005",
+			"name": "[季节纯音]春、夏、秋、冬四季之美",
+			"imgPath": "images/2.jpg",
+			"playCount": "111568",
+			"authorId": "101006"
+		}, {
+			"id": "1006",
+			"name": "❤不让你通宵的电音都不是好的毒品",
+			"imgPath": "images/3.jpg",
+			"playCount": "111568",
+			"authorId": "101005"
+		}
+	],
+	"sliderList": [
+		{
+			"imgPath": "images/0.jpg"
+		}, {
+			"imgPath": "images/1.jpg"
+		}, {
+			"imgPath": "images/2.jpg"
+		}, {
+			"imgPath": "images/3.jpg"
+		}
+	]
+}
