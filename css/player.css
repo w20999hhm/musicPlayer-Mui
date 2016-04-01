@@ -1,192 +1,231 @@
-			html,
-			body,
-			.mui-content {
-				height: 100%;
-				background: rgba(0, 0, 0, 0.3);
-			}
-			
-			.wrap {
-				margin: 80px 0 0;
-			}
-			
-			.record {
-				width: 200px;
-				height: 200px;
-				margin: 0 auto;
-				position: relative;
-				background: url(../images/play_bk.png) center no-repeat;
-				border-radius: 200px;
-				box-shadow: 0px 0px 5px #888888;
-			}
-			
-			.mui-slider .mui-slider-group .mui-slider-item .record img {
-				width: 130px;
-				height: 130px;
-				border-radius: 130px;
-				position: absolute;
-				top: 35px;
-				left: 35px;
-			}
-			
-			@-webkit-keyframes rotateNow {
-				0% {
-					-webkit-transform: rotate(0);
-				}
-				100% {
-					-webkit-transform: rotate(360deg);
-				}
-			}
-			
-			@-moz-keyframes rotateNow {
-				0% {
-					-moz-transform: rotate(0);
-				}
-				100% {
-					-moz-transform: rotate(360deg);
-				}
-			}
-			
-			@keyframes rotateNow {
-				0% {
-					transform: rotate(0);
-				}
-				100% {
-					transform: rotate(360deg);
-				}
-			}
-			
-			.rotateImg {
-				-webkit-animation: rotateNow 10s linear 2s infinite;
-				-moz-animation: rotateNow 10s linear 2s infinite;
-				-o-animation: rotateNow 10s linear 2s infinite;
-				animation: rotateNow 10s linear 2s infinite;
-			}
-			
-			@-webkit-keyframes playNow {
-				0% {
-					-webkit-transform-origin: 66px top;
-					-webkit-transform: rotate(0);
-				}
-				100% {
-					-webkit-transform-origin: 66px top;
-					-webkit-transform: rotate(30deg);
-				}
-			}
-			
-			@-moz-keyframes playNow {
-				0% {
-					-moz-transform-origin: 66px top;
-					-moz-transform: rotate(0);
-				}
-				100% {
-					-moz-transform-origin: 66px top;
-					-moz-transform: rotate(30deg);
-				}
-			}
-			
-			@keyframes playNow {
-				0% {
-					transform-origin: 66px top;
-					transform: rotate(0);
-				}
-				100% {
-					transform-origin: 66px top;
-					transform: rotate(30deg);
-				}
-			}
-			
-			.play {
-				position: absolute;
-				z-index: 100;
-				right: -80px;
-				top: -10px;
-				background-image: url(images/play.png);
-				background-position: 0 0;
-				background-repeat: no-repeat;
-				width: 143px;
-				height: 134px;
-			}
-			
-			.playNow {
-				-webkit-animation: playNow 2s linear 2s;
-				-moz-animation: playNow 2s linear 2s;
-				-o-animation: playNow 2s linear 2s;
-				animation: playNow 2s linear 2s;
-			}
-			
-			.player-control {
-				height: 150px;
-				border: 1px solid #333333;
-				position: absolute;
-				bottom: 0px;
-				left: 0px;
-				width: 100%;
-			}
-			
-			.control {
-				width: 100%;
-				height: 50px;
-				line-height: 50px;
-			}
-			
-			.progra {
-				height: 80px;
-				width: 100%;
-			}
-			
-			.progra .mui-input-row.mui-input-range {
-				padding: 30px 60px;
-			}
-			
-			.progra .program {
-				width: 100%;
-				margin: 0 auto;
-			}
-			
-			.control span {
-				width: 20%;
-				text-align: center;
-				float: left;
-			}
-			
-			.control .iconfont {
-				color: #FFFFFF;
-				font-size: 30px;
-			}
-			
-			.control .icon-bofang,
-			.control .icon-zanting {
-				font-size: 40px;
-				vertical-align: middle;
-				padding-bottom: 8px;
-			}
-			
-			.ptime,
-			.stime {
-				position: absolute;
-				font-size: 12px;
-				top: 38px;
-				color: #CCC;
-			}
-			
-			.ptime {
-				right: 20px;
-			}
-			
-			.stime {
-				left: 20px;
-			}
-			
-			#progress {
-				-webkit-transition: all 1s linear;
-				transition: all 1s linear;
-			}
-			
-			.mui-input-range input[type=range]::-webkit-slider-thumb {
-				width: 15px;
-				height: 15px;
-			}
-			
-			.hidden {
-				display: none;
-			}
+html,
+body,
+.mui-content {
+	height: 100%;
+}
+
+.mui-content {
+	background: linear-gradient(180deg, rgba(180, 180, 180, 0.3), rgba(0, 0, 0, 0.9));
+	/* 标准的语法（必须放在最后） */
+}
+
+.wrap {
+	margin: 80px 0 0;
+}
+
+.record {
+	width: 200px;
+	height: 200px;
+	margin: 0 auto;
+	position: relative;
+	background: url(../images/play_bk.png) center no-repeat;
+	border-radius: 200px;
+	box-shadow: 0px 0px 5px #888888;
+}
+
+.mui-slider .mui-slider-group .mui-slider-item .record img {
+	width: 130px;
+	height: 130px;
+	border-radius: 130px;
+	position: absolute;
+	top: 35px;
+	left: 35px;
+}
+
+@-webkit-keyframes rotateNow {
+	0% {
+		-webkit-transform: rotate(0);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@-moz-keyframes rotateNow {
+	0% {
+		-moz-transform: rotate(0);
+	}
+	100% {
+		-moz-transform: rotate(360deg);
+	}
+}
+
+@keyframes rotateNow {
+	0% {
+		transform: rotate(0);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.rotateImg {
+	-webkit-animation: rotateNow 10s linear 1s infinite;
+	-moz-animation: rotateNow 10s linear 1s infinite;
+	-o-animation: rotateNow 10s linear 1s infinite;
+	animation: rotateNow 10s linear 1s infinite;
+}
+
+@-webkit-keyframes playNow {
+	0% {
+		-webkit-transform-origin: 66px top;
+		-webkit-transform: rotate(0);
+	}
+	100% {
+		-webkit-transform-origin: 66px top;
+		-webkit-transform: rotate(30deg);
+	}
+}
+
+@-moz-keyframes playNow {
+	0% {
+		-moz-transform-origin: 66px top;
+		-moz-transform: rotate(0);
+	}
+	100% {
+		-moz-transform-origin: 66px top;
+		-moz-transform: rotate(30deg);
+	}
+}
+
+@keyframes playNow {
+	0% {
+		transform-origin: 66px top;
+		transform: rotate(0);
+	}
+	100% {
+		transform-origin: 66px top;
+		transform: rotate(30deg);
+	}
+}
+
+.anim-pause {
+	-webkit-animation-play-state: paused;
+	animation-play-state: paused;
+}
+
+.play {
+	position: absolute;
+	z-index: 100;
+	right: -80px;
+	top: -10px;
+	background-image: url(images/play.png);
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	width: 143px;
+	height: 134px;
+}
+
+.playNow {
+	-webkit-animation: playNow 2s linear 2s;
+	-moz-animation: playNow 2s linear 2s;
+	-o-animation: playNow 2s linear 2s;
+	animation: playNow 2s linear 2s;
+}
+
+.player-control {
+	height: 150px;
+	border: 1px solid #333333;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+}
+
+.control {
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+}
+
+.progra {
+	height: 80px;
+	width: 100%;
+}
+
+.progra .mui-input-row.mui-input-range {
+	padding: 30px 60px;
+}
+
+.progra .program {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.control span {
+	width: 20%;
+	text-align: center;
+	float: left;
+}
+
+.control .iconfont {
+	color: #FFFFFF;
+	font-size: 30px;
+}
+
+.control .icon-bofang,
+.control .icon-zanting {
+	font-size: 40px;
+	vertical-align: middle;
+	padding-bottom: 8px;
+}
+
+.ptime,
+.stime {
+	position: absolute;
+	font-size: 12px;
+	top: 38px;
+	color: #CCC;
+}
+
+.ptime {
+	right: 20px;
+}
+
+.stime {
+	left: 20px;
+}
+
+#progress {
+	-webkit-transition: all 1s linear;
+	transition: all 1s linear;
+}
+
+.mui-input-range input[type=range]::-webkit-slider-thumb {
+	width: 15px;
+	height: 15px;
+}
+
+.hidden {
+	display: none;
+}
+
+@media screen and (max-height:450px) {
+	.mui-slider {
+		display: none;
+	}
+}
+
+@media screen and (min-height:700px) {
+	.wrap {
+		margin: 120px 0 0;
+	}
+}
+
+@media screen and (max-height:520px) {
+	.wrap {
+		margin: 50px 0 0;
+	}
+	.record {
+		width: 150px;
+		height: 150px; 
+		margin: 0 auto;
+	}
+	.mui-slider .mui-slider-group .mui-slider-item .record img {
+		width: 100px;
+		height: 100px;
+		border-radius: 100px;
+		top: 25px;
+		left: 25px;
+	}
+}

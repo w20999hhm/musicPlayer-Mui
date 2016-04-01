@@ -29,6 +29,7 @@
 			var gentry = null,
 				hl = null,
 				le = null,
+				ranger = null,
 				gallery = null,
 				er = null,
 				ep = null,
@@ -79,6 +80,7 @@
 				zt = document.getElementById("zanting-btn");
 				xyq = document.getElementById("xiayiqu-btn");
 				syq = document.getElementById("shangyiqu-btn");
+				ranger = document.getElementById("progress");
 				gallery = mui('.mui-slider');
 			}, false);
 			// 播放文件相关对象
@@ -98,7 +100,8 @@
 				});
 				// 停止播放
 				zt.addEventListener('tap', function() {
-					stopSong();
+					//stopSong();
+					pauseSong();
 				});
 				//下一曲
 				xyq.addEventListener('tap', function() {
@@ -107,13 +110,33 @@
 				syq.addEventListener('tap', function() {
 					prevSong();
 				})
-				gallery[0].addEventListener('swipeleft', function() {
+				gallery.on('swipeleft', '.mui-slider-item', function() {
 					nextSong();
 				})
-				gallery[0].addEventListener('swiperight', function() {
+				gallery.on('swiperight', '.mui-slider-item', function() {
 					if (songIndex == 0) return false;
 					prevSong();
 				})
+				ranger.addEventListener('dragend', function() {
+					if (!visualizer) {
+						if (p) {
+							var ti = Math.round(this.value / 100 * p.getDuration());
+							setTimeout(p.seekTo(ti), 1000);
+						} else {
+							playSong(songList[songIndex])
+							var ti = Math.round(this.value / 100 * p.getDuration());
+							setTimeout(p.seekTo(ti), 1000);
+						}
+					} else {
+						var t = document.getElementById("progress").value;
+						stopSong();
+						setTimeout(function() {
+							clearInterval(pi);
+							var ti = Math.round(t / 100 * strToSecond(pt.innerText));
+							playSong(songList[songIndex], ti);
+						}, 1000);
+					}
+				});
 			}
 
 			function nextSong() {
@@ -133,6 +156,7 @@
 			function stopSong() {
 				zt.className += " hidden";
 				zt.previousElementSibling.className = zt.previousElementSibling.className.replace(/ hidden/g, '');
+				document.querySelectorAll('.record')[songIndex].className += " anim-pause";
 				clearInterval(pi);
 				pi = null;
 				if (!visualizer) {
@@ -150,13 +174,28 @@
 				busy = false
 			}
 
-			function playSong(song) {
+			function pauseSong() {
+				zt.className += " hidden";
+				zt.previousElementSibling.className = zt.previousElementSibling.className.replace(/ hidden/g, '');
+				document.querySelectorAll('.record')[songIndex].className += " anim-pause";
+				if (visualizer) {
+					visualizer.audioSource.context.suspend();
+					clearInterval(pi);
+				} else {
+					p.pause();
+				}
+			}
+
+			function playSong(song, ti) {
 				var url = baseUrl + song.name;
 				if (!visualizer) {
 					//ep.style.display = "block";
 					//var L = pp.clientWidth;
-					bf.className += " hidden";
-					bf.nextElementSibling.className = bf.nextElementSibling.className.replace(/ hidden/g, '');
+					playClass();
+					if (p) {
+						p.resume();
+						return false;
+					}
 					gallery.slider().gotoItem(songIndex);
 					var L = 100;
 					p = plus.audio.createPlayer(url);
@@ -164,9 +203,9 @@
 						st.innerText = timeToStr(d);
 						pt.innerText = timeToStr(d);
 						pp.value = L;
-						stopPlay();
+						nextSong();
 					}, function(e) {
-						//outLine("播放音频文件\"" + url + "\"失败：" + e.message);
+						mui.toast("播放失败" + e.message);
 					});
 					// 获取总时长
 					var d = p.getDuration();
@@ -189,21 +228,49 @@
 					}, 1000);
 				} else {
 					url = url.substring(url.indexOf('/') + 1, url.length);
-					visualizer.play(url, isMobile, function(v) {
-						pt.innerText = timeToStr(v.duration);
-						busy = true;
-						bf.className += " hidden";
-						bf.nextElementSibling.className = bf.nextElementSibling.className.replace(/ hidden/g, '');
-						gallery.slider().gotoItem(songIndex);
-						var count = 1;
+					if (visualizer.audioSource.context.state == 'suspended') {
+						var count = strToSecond(st.innerText);
 						pi = setInterval(function() {
 							st.innerText = timeToStr(count);
-							var pct = Math.round(100 * v.sampleRate * count / v.length);
+							var pct = Math.round(100 * strToSecond(st.innerText) / strToSecond(pt.innerText));
 							pp.value = pct;
 							count++
+							visualizer.audioSource.context.resume();
 						}, 1000);
-					});
+						playClass();
+					} else {
+						visualizer.play(url, isMobile, ti, function(v) {
+							pt.innerText = timeToStr(v.duration);
+							busy = true;
+							playClass();
+							gallery.slider().gotoItem(songIndex);
+							if (ti) {
+								var count = ti;
+								pi = setInterval(function() {
+									st.innerText = timeToStr(count);
+									var pct = Math.round(100 * strToSecond(st.innerText) / strToSecond(pt.innerText));
+									pp.value = pct;
+									count++
+								}, 1000);
+							} else {
+								var count = 1;
+								pi = setInterval(function() {
+									st.innerText = timeToStr(count);
+									var pct = Math.round(100 * v.sampleRate * count / v.length);
+									pp.value = pct;
+									count++
+								}, 1000);
+							}
+						});
+					}
 				}
+			}
+
+			function playClass() {
+				bf.className += " hidden";
+				bf.nextElementSibling.className = bf.nextElementSibling.className.replace(/ hidden/g, '');
+				document.querySelectorAll('.record')[songIndex].className =
+					document.querySelectorAll('.record')[songIndex].className.replace(/ anim-pause/g, '');
 			}
 			// 重置播放页面内容
 			function resetPlay() {
@@ -217,7 +284,7 @@
 			function resetback() {
 				// 停止播放
 				if (ep.style.display == "block") {
-					stopPlay();
+					stopSong();
 				} else if (er.style.display == "block") {
 					stopRecord();
 				} else {
@@ -238,16 +305,16 @@
 				<div id="slider" class="mui-slider">
 					<div class="mui-slider-group">
 						<div class="mui-slider-item">
-							<div class="record rotateImg">
+							<div class="record rotateImg anim-pause">
 								<img id="rotateImg" src="images/0.jpg" />
 							</div>
 						</div>
-						<div class="mui-slider-item">
+						<div class="mui-slider-item anim-pause">
 							<div class="record rotateImg">
 								<img id="rotateImg" src="images/1.jpg" />
 							</div>
 						</div>
-						<div class="mui-slider-item">
+						<div class="mui-slider-item anim-pause">
 							<div class="record rotateImg">
 								<img id="rotateImg" src="images/2.jpg" />
 							</div>

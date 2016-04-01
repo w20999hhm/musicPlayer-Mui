@@ -18,6 +18,8 @@ function MusicVisualizer(options) {
 	//unit8Array的长度
 	this.size = options.size || 32;
 
+	this.length = 0;
+
 	//可视化调用的绘图函数
 	this.visualizer = options.visualizer;
 
@@ -56,6 +58,10 @@ MusicVisualizer.isFunction = function(fun) {
 	return Object.prototype.toString.call(fun) == "[object Function]";
 }
 
+MusicVisualizer.pause = function() {
+	ac.suspend();
+}
+
 /*从指定的路径加载音频资源
  *@param xhr XMLHttpRequest
  *@param path string,音频资源路径
@@ -73,16 +79,16 @@ MusicVisualizer.load = function(xhr, path, fun) {
 }
 
 //播放mv对象的source,mv.onended为播放结束后的回调
-MusicVisualizer.play = function(mv) {
+MusicVisualizer.play = function(mv, ti) {
 
 	mv.source.connect(mv.analyser);
 
 	if (mv.source === mv.audioSource) {
-		mv.audio.play();
+		mv.audio.play(0, ti);
 		mv.audio.onended = mv.onended;
 	} else {
 		//兼容较老的API
-		mv.source[mv.source.start ? "start" : "noteOn"](0);
+		mv.source[mv.source.start ? "start" : "noteOn"](0, ti);
 
 		//为该bufferSource绑定onended事件
 		MusicVisualizer.isFunction(mv.onended) && (mv.source.onended = mv.onended);
@@ -160,7 +166,8 @@ MusicVisualizer.prototype.decode = function(arraybuffer, fun) {
 
 MusicVisualizer.prototype.timeCount = 0;
 
-MusicVisualizer.prototype.play = function(path, isMobile /*是否移动设备*/ , started) {
+MusicVisualizer.prototype.play = function(path, isMobile /*是否移动设备*/ , ti, started) {
+	ti = ti || 0;
 	var self = this;
 	var count = ++self.count;
 
@@ -172,7 +179,7 @@ MusicVisualizer.prototype.play = function(path, isMobile /*是否移动设备*/ 
 			self.initCallback && !self.source && MusicVisualizer.isFunction(self.initCallback) && self.initCallback();
 			self.source = this;
 			if (MusicVisualizer.isFunction(started)) started(this.buffer);
-			MusicVisualizer.play(self);
+			MusicVisualizer.play(self, ti);
 		});
 	}
 	if (typeof(path) === 'string') {
@@ -188,7 +195,7 @@ MusicVisualizer.prototype.play = function(path, isMobile /*是否移动设备*/ 
 
 			self.source = self.audioSource;
 
-			MusicVisualizer.play(self);
+			MusicVisualizer.play(self, ti);
 
 			return;
 		}
@@ -202,7 +209,7 @@ MusicVisualizer.prototype.play = function(path, isMobile /*是否移动设备*/ 
 			bufferSource.buffer = self.buffer[path];
 			self.source = bufferSource;
 			if (MusicVisualizer.isFunction(started)) started(this.buffer);
-			MusicVisualizer.play(self);
+			MusicVisualizer.play(self, ti);
 		} else {
 			MusicVisualizer.load(self.xhr, path, function() {
 
@@ -220,7 +227,7 @@ MusicVisualizer.prototype.play = function(path, isMobile /*是否移动设备*/ 
 					self.source = this;
 					if (MusicVisualizer.isFunction(started)) started(this.buffer);
 
-					MusicVisualizer.play(self);
+					MusicVisualizer.play(self, ti);
 				});
 			})
 		}

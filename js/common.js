@@ -153,7 +153,13 @@
 		return (ultZeroize(m) + ":" + ultZeroize(s));
 		//return (ultZeroize(h)+":"+ultZeroize(m)+":"+ultZeroize(s));
 	};
-	// 格式化日期时间字符串，格式为"YYYY-MM-DD HH:MM:SS"
+
+	w.strToSecond = function(str) {
+			var arr = str.split(':');
+			var seconds = parseInt(arr[0] * 60) + parseInt(arr[1]);
+			return seconds;
+		}
+		// 格式化日期时间字符串，格式为"YYYY-MM-DD HH:MM:SS"
 	w.dateToStr = function(d) {
 		return (d.getFullYear() + "-" + ultZeroize(d.getMonth() + 1) + "-" + ultZeroize(d.getDate()) + " " + ultZeroize(d.getHours()) + ":" + ultZeroize(d.getMinutes()) + ":" + ultZeroize(d.getSeconds()));
 	};
