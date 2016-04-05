@@ -5,169 +5,11 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title></title>
+		<title>音乐播放器</title>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="fonts/iconfont.css" />
 		<link rel="stylesheet" href="css/index.css" />
-		<script src="js/mui.js"></script>
-		<style type="text/css">
-			.user-info {
-				height: 140px;
-				color: #FFFDEF;
-				padding: 45px 10px 0px;
-				background: url(images/menu-bk.jpg) center no-repeat;
-				background-size: 100%;
-			}
-			
-			.user-info .user-info-txt {
-				height: 35px;
-				line-height: 35px;
-				font-size: 14px;
-			}
-			
-			.user-info .user-head {
-				background: url(images/head-0.jpg) center no-repeat;
-				height: 50px;
-				width: 50px;
-				border-radius: 50%;
-			}
-			
-			.user-info .user-level {
-				border: 1px solid;
-				padding: 0px 3px;
-				font-size: 10px;
-				border-radius: 7px;
-				margin-left: 2px;
-			}
-			
-			.user-info .mui-btn {
-				color: #FFFDEF;
-				line-height: 10px;
-				margin: 5px 0px;
-				font-size: 12px;
-			}
-			
-			.mui-table-view {
-				font-size: 12px;
-				color: #555555;
-			}
-			
-			.mui-table-view-cell:after {
-				background: none;
-			}
-			/*.mui-control-content {
-				min-height: 415px;
-			}
-			
-			@media only screen and (min-height: 565px) and (max-height: 600px) {
-				.mui-control-content {
-					min-height: 437px;
-				}
-			}
-			
-			@media only screen and (min-height: 600px) and (max-height: 655px) {
-				.mui-control-content {
-					min-height: 478px;
-				}
-			}
-			
-			@media only screen and (min-height: 655px) {
-				.mui-control-content {
-					min-height: 528px;
-				}
-			}*/
-			
-			.mui-fullscreen .mui-segmented-control~.mui-slider-group {
-				top: 81px;
-			}
-			
-			.songList-wrap {
-				padding: 0px 15px;
-				position: relative;
-				box-sizing: content-box;
-			}
-			
-			.songList-wrap .songList-title {
-				padding: 15px 0px 15px 10px;
-			}
-			
-			.songList-wrap .songList-title:before {
-				content: '';
-				width: 4px;
-				background-color: #FE3333;
-				position: absolute;
-				left: 15px;
-				height: 18px;
-				top: 14px;
-				border-radius: 8px;
-			}
-			
-			.songList-wrap .mui-btn {
-				line-height: 15px;
-				top: -5px;
-			}
-			
-			.songList-boutique {
-				position: relative;
-				background: #FFFFFF;
-			}
-			
-			.songList-wrap .songList-boutique-img {
-				height: 70px;
-				width: 70px;
-			}
-			
-			.songList-wrap .songList-boutique-img img {
-				height: 100%;
-				width: 100%;
-			}
-			
-			.songList-boutique .songList-boutique-txt {
-				position: absolute;
-				left: 80px;
-				height: 50px;
-				top: 50%;
-				margin-top: -25px;
-			}
-			
-			.songList-boutique .songList-boutique-txt h5 {
-				font-size: 14px;
-				font-weight: bold;
-				color: #333;
-			}
-			
-			.songList-boutique .songList-boutique-txt p {
-				padding-top: 5px;
-				font-size: 12px;
-			}
-			
-			.songList-boutique .songList-boutique-btn {
-				position: absolute;
-				right: 10px;
-				top: 50%;
-				margin-top: -12px;
-			}
-			
-			.songList-wrap .songList-content {
-				margin-top: 10px;
-				background: #FFFFFF;
-			}
-			
-			.songList-content .mui-table-view {
-				background: #efeff4;
-			}
-			
-			.songList-content .mui-table-view:before,
-			.songList-content .mui-table-view:after {
-				background: none;
-			}
-			
-			.songList-content .mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body {
-				color: #666666;
-				text-align: left;
-				font-size: 12px;
-			}
-		</style>
+		<script type="application/javascript" src="js/mui.js"></script>
 	</head>
 
 	<body>
@@ -542,125 +384,194 @@
 					<div id="item3" class="mui-slider-item mui-control-content">
 						<div id="scroll3" class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<ul class="mui-table-view">
-									<li class="mui-table-view-cell">
-										<a href="playlistContent.html">第三个选项卡子项-1</a>
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-2
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-3
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-4
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-5
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-6
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-7
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-8
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-9
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-10
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-11
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-12
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-13
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-14
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-15
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-16
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-17
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-18
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-19
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-20
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-21
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-22
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-23
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-24
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-25
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-26
-									</li>
-								</ul>
+								<div id="slider-FM" class="mui-slider">
+									<div class="mui-slider-group">
+										<div class="mui-slider-item">
+											<div class="slider-FM-menu">
+												<span class="FM-menu-item"><i class="iconfont icon-ttpodicon1"></i>
+													<p>外语世界</p>
+												</span>
+												<span class="FM-menu-item"><i class="iconfont icon-microphone"></i>
+													<p>二次元</p>
+												</span>
+												<span class="FM-menu-item"><i class="iconfont icon-renlianshibie"></i>
+													<p>旅途|城市</p>
+												</span>
+												<span class="FM-menu-item"><i class="iconfont icon-xiaoshuo"></i>
+													<p>娱乐|影视</p>
+												</span>
+
+												<span class="FM-menu-item"><i class="iconfont icon-icon14erji"></i>
+													<p>3D|电子</p>
+												</span>
+
+												<span class="FM-menu-item"><i class="iconfont icon-iconset0163"></i>
+													<p>校园|教育</p>
+												</span>
+												<span class="FM-menu-item"><i class="iconfont icon-instructions"></i>
+													<p>亲子宝贝</p>
+												</span>
+												<span class="FM-menu-item"><i class="iconfont icon-book"></i>
+													<p>广播剧</p>
+												</span>
+											</div>
+										</div>
+										<div class="mui-slider-item">
+											<div class="slider-FM-menu">
+												<span class="FM-menu-item"><i class="iconfont icon-abc"></i>
+													<p>外语世界</p>
+												</span>
+												<span class="FM-menu-item"><i class="iconfont icon-cebianlianxiao"></i>
+													<p>二次元</p>
+												</span>
+												<span class="FM-menu-item"><i class="iconfont icon-feiji"></i>
+													<p>旅途|城市</p>
+												</span>
+												<span class="FM-menu-item"><i class="iconfont icon-naiping"></i>
+													<p>娱乐|影视</p>
+												</span>
+
+												<span class="FM-menu-item"><i class="iconfont icon-yingshixian"></i>
+													<p>3D|电子</p>
+												</span>
+
+												<span class="FM-menu-item"><i class="iconfont icon-erji"></i>
+													<p>校园|教育</p>
+												</span>
+												<span class="FM-menu-item"><i class="iconfont icon-jiaoyu"></i>
+													<p>亲子宝贝</p>
+												</span>
+												<span class="FM-menu-item"><i class="iconfont icon-juweihuiguangbo01"></i>
+													<p>广播剧</p>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="mui-slider-indicator mui-text-center">
+										<div class="mui-indicator mui-active"></div>
+										<div class="mui-indicator"></div>
+									</div>
+								</div>
 							</div>
-							<div class="mui-scrollbar mui-scrollbar-vertical">
-								<div class="mui-scrollbar-indicator"></div>
-							</div>
+						</div>
+						<div class="mui-scrollbar mui-scrollbar-vertical">
+							<div class="mui-scrollbar-indicator"></div>
 						</div>
 					</div>
 					<div id="item4" class="mui-slider-item mui-control-content">
 						<div id="scroll4" class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<ul class="mui-table-view">
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-1
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-2
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-3
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-4
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-5
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-6
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-7
-									</li>
-									<li class="mui-table-view-cell">
-										第三个选项卡子项-8
-									</li>
-								</ul>
+								<div class="mui-content-ranking">
+									<div class="official-ranking">
+										<h3>全球榜</h3>
+										<ul class="mui-table-view">
+											<li class="mui-table-view-cell mui-media">
+												<a href="javascript:;">
+													<img class="mui-media-object mui-pull-left" src="images/0.jpg">
+													<div class="mui-media-body">
+														<p class='mui-ellipsis'>1.能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+														<p class='mui-ellipsis'>2.能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+														<p class='mui-ellipsis'>3.能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="javascript:;">
+													<img class="mui-media-object mui-pull-left" src="images/1.jpg">
+													<div class="mui-media-body">
+														<p class='mui-ellipsis'>1.能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+														<p class='mui-ellipsis'>2.能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+														<p class='mui-ellipsis'>3.能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="javascript:;">
+													<img class="mui-media-object mui-pull-left" src="images/2.jpg">
+													<div class="mui-media-body">
+														<p class='mui-ellipsis'>1.能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+														<p class='mui-ellipsis'>2.能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+														<p class='mui-ellipsis'>3.能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="javascript:;">
+													<img class="mui-media-object mui-pull-left" src="images/2.jpg">
+													<div class="mui-media-body">
+														<p class='mui-ellipsis'>1.能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+														<p class='mui-ellipsis'>2.能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+														<p class='mui-ellipsis'>3.能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="javascript:;">
+													<img class="mui-media-object mui-pull-left" src="images/2.jpg">
+													<div class="mui-media-body">
+														<p class='mui-ellipsis'>1.能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+														<p class='mui-ellipsis'>2.能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+														<p class='mui-ellipsis'>3.能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+													</div>
+												</a>
+											</li>
+										</ul>
+									</div>
+									<div class="other-ranking">
+										<h3>全球榜</h3>
+										<ul class="mui-table-view">
+											<li class="mui-table-view-cell mui-media">
+												<a href="javascript:;">
+													<img class="mui-media-object mui-pull-left" src="images/0.jpg">
+													<div class="mui-media-body">
+														云音乐ACG音乐榜
+														<p class='mui-ellipsis'>能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="javascript:;">
+													<img class="mui-media-object mui-pull-left" src="images/1.jpg">
+													<div class="mui-media-body">
+														日本Oricon周榜
+														<p class='mui-ellipsis'>想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="javascript:;">
+													<img class="mui-media-object mui-pull-left" src="images/2.jpg">
+													<div class="mui-media-body">
+														韩国Melon排行榜周榜
+														<p class='mui-ellipsis'>烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="javascript:;">
+													<img class="mui-media-object mui-pull-left" src="images/2.jpg">
+													<div class="mui-media-body">
+														韩国Melon排行榜周榜
+														<p class='mui-ellipsis'>烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="javascript:;">
+													<img class="mui-media-object mui-pull-left" src="images/2.jpg">
+													<div class="mui-media-body">
+														韩国Melon排行榜周榜
+														<p class='mui-ellipsis'>烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
+													</div>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
 							</div>
-							<div class="mui-scrollbar mui-scrollbar-vertical">
-								<div class="mui-scrollbar-indicator"></div>
-							</div>
+						</div>
+						<div class="mui-scrollbar mui-scrollbar-vertical">
+							<div class="mui-scrollbar-indicator"></div>
 						</div>
 					</div>
 				</div>

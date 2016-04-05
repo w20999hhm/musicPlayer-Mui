@@ -125,7 +125,7 @@ body,
 
 .player-control {
 	height: 150px;
-	border: 1px solid #333333;
+	/* border: 1px solid #333333; */
 	position: absolute;
 	bottom: 0px;
 	left: 0px;
@@ -186,6 +186,34 @@ body,
 	left: 20px;
 }
 
+.menu-list {
+	height: 40px;
+	position: absolute;
+	bottom: 120px;
+	left: 0px;
+	width: 100%;
+	padding: 0 15%;
+	line-height: 35px;
+}
+
+.menu-list .menui-list-item {
+	width: 25%;
+	text-align: center;
+	display: block;
+	float: left;
+}
+
+.menui-list-item .iconfont {
+	font-size: 22px;
+	color: #FFFFFF;
+}
+
+.menui-list-item .mui-badge {
+	position: absolute;
+	/* top: 0px; */
+	color: #FFFFFF;
+}
+
 #progress {
 	-webkit-transition: all 1s linear;
 	transition: all 1s linear;
@@ -218,7 +246,7 @@ body,
 	}
 	.record {
 		width: 150px;
-		height: 150px; 
+		height: 150px;
 		margin: 0 auto;
 	}
 	.mui-slider .mui-slider-group .mui-slider-item .record img {

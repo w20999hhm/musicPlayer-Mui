@@ -126,3 +126,246 @@ html body {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
+.user-info {
+	height: 140px;
+	color: #FFFDEF;
+	padding: 45px 10px 0px;
+	background: url(../images/menu-bk.jpg) center no-repeat;
+	background-size: 100%;
+}
+
+.user-info .user-info-txt {
+	height: 35px;
+	line-height: 35px;
+	font-size: 14px;
+}
+
+.user-info .user-head {
+	background: url(../images/head-0.jpg) center no-repeat;
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+}
+
+.user-info .user-level {
+	border: 1px solid;
+	padding: 0px 3px;
+	font-size: 10px;
+	border-radius: 7px;
+	margin-left: 2px;
+}
+
+.user-info .mui-btn {
+	color: #FFFDEF;
+	line-height: 10px;
+	margin: 5px 0px;
+	font-size: 12px;
+}
+
+.mui-table-view {
+	font-size: 12px;
+	color: #555555;
+}
+
+.mui-table-view-cell:after {
+	background: none;
+}
+
+
+/*.mui-control-content {
+				min-height: 415px;
+			}
+			
+			@media only screen and (min-height: 565px) and (max-height: 600px) {
+				.mui-control-content {
+					min-height: 437px;
+				}
+			}
+			
+			@media only screen and (min-height: 600px) and (max-height: 655px) {
+				.mui-control-content {
+					min-height: 478px;
+				}
+			}
+			
+			@media only screen and (min-height: 655px) {
+				.mui-control-content {
+					min-height: 528px;
+				}
+			}*/
+
+.mui-fullscreen .mui-segmented-control~.mui-slider-group {
+	top: 81px;
+}
+
+.songList-wrap {
+	padding: 0px 15px;
+	position: relative;
+	box-sizing: content-box;
+}
+
+.songList-wrap .songList-title {
+	padding: 15px 0px 15px 10px;
+}
+
+.songList-wrap .songList-title:before {
+	content: '';
+	width: 4px;
+	background-color: #FE3333;
+	position: absolute;
+	left: 15px;
+	height: 18px;
+	top: 14px;
+	border-radius: 8px;
+}
+
+.songList-wrap .mui-btn {
+	line-height: 15px;
+	top: -5px;
+}
+
+.songList-boutique {
+	position: relative;
+	background: #FFFFFF;
+}
+
+.songList-wrap .songList-boutique-img {
+	height: 70px;
+	width: 70px;
+}
+
+.songList-wrap .songList-boutique-img img {
+	height: 100%;
+	width: 100%;
+}
+
+.songList-boutique .songList-boutique-txt {
+	position: absolute;
+	left: 80px;
+	height: 50px;
+	top: 50%;
+	margin-top: -25px;
+}
+
+.songList-boutique .songList-boutique-txt h5 {
+	font-size: 14px;
+	font-weight: bold;
+	color: #333;
+}
+
+.songList-boutique .songList-boutique-txt p {
+	padding-top: 5px;
+	font-size: 12px;
+}
+
+.songList-boutique .songList-boutique-btn {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	margin-top: -12px;
+}
+
+.songList-wrap .songList-content {
+	margin-top: 10px;
+	background: #FFFFFF;
+}
+
+.songList-content .mui-table-view {
+	background: #efeff4;
+}
+
+.songList-content .mui-table-view:before,
+.songList-content .mui-table-view:after {
+	background: none;
+}
+
+.songList-content .mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body {
+	color: #666666;
+	text-align: left;
+	font-size: 12px;
+}
+
+.official-ranking,
+.other-ranking {
+	position: relative;
+}
+
+.official-ranking .mui-table-view:after {
+	content: none;
+}
+
+.official-ranking .mui-table-view .mui-media-body {
+	margin: 5px 0px;
+}
+
+.other-ranking .mui-table-view .mui-media-object {
+	height: 60px;
+	max-width: 65px;
+}
+
+.other-ranking .mui-table-view .mui-media-body {
+	margin: 10px 0px;
+}
+
+.official-ranking .mui-table-view .mui-media-body p {
+	padding: 2px 0px;
+}
+
+.official-ranking .mui-table-view .mui-media-object.mui-pull-left {
+	height: 80px;
+	max-width: 100px;
+}
+
+.mui-content-ranking h3 {
+	font-size: 16px;
+	padding: 5px 30px;
+}
+
+.mui-content-ranking .official-ranking:before,
+.mui-content-ranking .other-ranking:before {
+	content: '';
+	width: 4px;
+	background-color: #FE3333;
+	position: absolute;
+	left: 15px;
+	height: 16px;
+	top: 3px;
+	border-radius: 8px;
+}
+
+.other-ranking .mui-table-view .mui-media-body {
+	font-size: 14px;
+}
+
+.other-ranking .mui-table-view .mui-media-body p {
+	font-size: 12px;
+}
+
+#slider-FM .mui-slider-group{
+	height: 160px;
+}
+.slider-FM-menu {
+	height: 135px;
+}
+
+.slider-FM-menu .FM-menu-item {
+	display: block;
+	float: left;
+	width: 25%;
+	text-align: center;
+	height: 50%;
+	line-height: 50px;
+	position: relative;
+}
+
+.slider-FM-menu .FM-menu-item .iconfont {
+	font-size: 30px;
+	color: #FE3333;
+}
+
+.slider-FM-menu .FM-menu-item p {
+	position: relative;
+	top: -29px;
+	font-size: 12px;
+}
