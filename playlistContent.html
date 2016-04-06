@@ -381,19 +381,18 @@
 			.playlistInfo {
 				height: 240px;
 				width: 100%;
-				background: url(images/3.jpg) no-repeat;
-				background-attachment: fixed;
+				background: url(images/2.jpg) no-repeat;
 				background-size: 100% 100%;
-				opacity: 0.6;
+				opacity: 0.8;
 			}
 			
 			.blur {
 				filter: url(blur.svg#blur);
-				-webkit-filter: blur(8px);
-				-moz-filter: blur(8px);
-				-ms-filter: blur(8px);
-				filter: blur(8px);
-				filter: progid: DXImageTransform.Microsoft.Blur(PixelRadius=8, MakeShadow=false);
+				-webkit-filter: blur(10px);
+				-moz-filter: blur(10px);
+				-ms-filter: blur(10px);
+				filter: blur(10px);
+				filter: progid: DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false);
 			}
 			
 			.playlist-img {
@@ -403,6 +402,8 @@
 				margin-top: 50px;
 				margin-left: 15px;
 				float: left;
+				border-radius: 5px;
+				box-shadow: 4px 3px 5px #666;
 			}
 			
 			.playlist-txt {
@@ -484,7 +485,7 @@
 								<i class="iconfont menu-btn">&#xe609;</i>
 							</li>
 							<li class="mui-table-view-cell">
-								<label class="playlist-index">2</label>
+								<label class="playlist-index">5</label>
 								<a class="mui-navigate-right" data-id='2'>
 									<h4>accordion（折叠面板）</h4>
 									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
@@ -492,7 +493,7 @@
 								<i class="iconfont menu-btn">&#xe609;</i>
 							</li>
 							<li class="mui-table-view-cell">
-								<label class="playlist-index">3</label>
+								<label class="playlist-index">6</label>
 								<a class="mui-navigate-right" data-id='3'>
 									<h4>accordion（折叠面板）</h4>
 									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
@@ -500,7 +501,7 @@
 								<i class="iconfont menu-btn">&#xe609;</i>
 							</li>
 							<li class="mui-table-view-cell">
-								<label class="playlist-index">4</label>
+								<label class="playlist-index">7</label>
 								<a class="mui-navigate-right" href="playlistContent.html">
 									<h4>We Are Nerver Ever Getting Show Me The Best Love</h4>
 									<p>上海幻乐团-幻想曲拔萃 东方萃梦魂魄妖梦</p>
@@ -590,7 +591,7 @@
 		mui('.playlist-wrap').on('tap', '.menu-btn', toggleMenu);
 		//下沉菜单中的点击事件
 		mui('#menu').on('tap', 'a', function() {
-			alert(mui("#menu-backdrop")[0].offsetHeight);
+			mui.toast("菜单点击扑捉")
 		});
 		var busying = false;
 
